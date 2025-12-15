@@ -1,0 +1,4222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Script do MathJax no <head> -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    
+    <title>Nivelamento - Matemática Para Engenharia Nivel 1 - Unidade 5</title>
+
+    <style>
+          /* Global styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .titulo-programa {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 50px;
+            color: #003974;
+            font-weight: lighter;
+        }
+
+        .titulo-materia {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 133px;
+            color: #003974;
+            font-weight: lighter;
+        }
+
+        .subtitulo-professor {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 59px;
+            color: #0058B4;
+            font-weight: lighter;
+        }
+
+        .titulo-unidade {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 60px;
+        }
+
+        .titulo-saiba-mais {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 70px;
+        }
+        /* Estilização de Bebas Neue FIM */
+
+
+        /* Estilização de Roboto INICIO */
+        .peso-1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 45px;
+        }
+
+        .texto {
+            font-family: 'Roboto', sans-serif;
+            font-size: 35px;
+        }
+
+        .sub-texto {
+            font-family: 'Roboto', sans-serif;
+            font-size: 25px;
+        }
+
+        .titulo-box {
+            font-family: 'Roboto', sans-serif;
+            font-size: 32px;
+        }
+
+        .fonte {
+            font-family: 'Roboto', sans-serif;
+            font-size: 25px;
+        }
+
+        .citacao {
+            font-family: 'Roboto', sans-serif;
+            font-size: 30px;
+            font-style: italic;
+        }
+        /* Estilização de Roboto FIM */
+
+        /* Navbar styles INICIO */
+        .navbar {
+            background-color: #9F43BE;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            position: -webkit-sticky; /* Para navegadores antigos */
+            position: sticky; /* Para manter no topo durante o scroll */
+            top: 0; /* Faz com que a navbar fique no topo */
+            z-index: 10; /* Garante que o menu fique acima de outros elementos */
+            transition: background-color 0.3s ease; /* Transição suave para o efeito */
+        }
+
+        .navbar .logo img {
+            height: 50px;/* Ajuste conforme necessário */
+            width: auto;
+        }
+
+        .navbar .menu-toggle {
+            cursor: pointer;
+            font-size: 1.5em;
+            display: block;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: none;
+            flex-direction: column;
+            background-color: #9f43be;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            width: 200px;
+            height: auto;
+            border-radius: 5px;
+            z-index: 10; /* Garante que o menu esteja acima de outros elementos */
+        }
+
+        .navbar ul.show {
+            display: flex;
+        }
+
+        .navbar ul li {
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .navbar ul li a:hover {
+            color: #003974; /* Cor ao passar o mouse */
+        }
+        .navbar .menu-toggle i:last-child {
+            display: none; /* Esconde o ícone de fechar inicialmente */
+        }
+        
+
+         /* Navbar styles FIM */
+
+        /* Titulo styles INICIO */
+        .titulo-intro {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .titulo-intro h1 {
+            margin: 0;
+            padding: 15px;
+        }
+        /* Titulo styles FIM */
+
+        /* Estilo da Capa do Livro INICIO*/
+        .capa-livro {
+            position: relative;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden; /* Para evitar que o pseudoelemento saia do container */
+            border-top: 3px solid #003974;
+            border-bottom: 3px solid #003974;
+        }
+
+        .capa-livro::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://res.cloudinary.com/di4ria1pf/image/upload/v1760076113/IMAGEM_CAPA_pq45xy.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.40; /* Controle da opacidade */
+            z-index: -1; /* Coloca o background atrás do conteúdo */
+        }
+
+        
+
+        .capa-livro .conteudo-capa {
+            text-align: center;
+            color: white;
+            padding: 20px; /* Espaço interno para o texto */
+        }
+
+        .capa-livro .titulo-materia {
+            font-size: 70px;
+            font-family: 'Bebas Neue', cursive;
+            margin: 0;
+        }
+
+        .capa-livro .subtitulo-professor {
+            font-size: 40px;
+            font-family: 'Bebas Neue', cursive;
+            margin: 10px 0 0;
+        }
+        /* Estilo da Capa do Livro FIM*/
+
+        /* Barra Superior */
+        .barra-superior {
+            background-color: #015A42; /* Cor verde escuro */
+            width: 100%;
+            padding: 15px 15px;
+            text-align: center;
+            box-sizing: border-box; /* Inclui padding e bordas no cálculo da largura */
+            overflow-x: hidden; /* Previne rolagem horizontal */
+        }
+
+        .barra-superior .titulo-barra {
+            font-family: 'Bebas Neue', cursive;
+            color: #FFF; /* Cor branca */
+            font-size: 50px;
+            font-weight: lighter;
+            margin: 0;
+        }
+
+        /* Conteúdo da Introdução */
+        .introducao {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            overflow-x: hidden; /* Impede rolagem horizontal */
+        }
+        
+        .introducao .titulo-introducao {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 50px;
+            font-weight: lighter;
+            color: #015A42; /* Cor verde */
+            margin: 10px auto 10px auto;
+        }
+
+        .introducao .caixa-texto {
+            width: 100%;
+            background-color: #E2F4EB; /* Verde mais claro */
+            padding: 64px 0;
+        }
+                /* Conteúdo centralizado dentro da faixa */
+        .introducao .conteudo-centralizado {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Parágrafos da introdução */
+        .introducao .conteudo-centralizado p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 19px;
+            line-height: 1.6;
+            text-align: justify;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* RESPONSIVIDADE SEÇÕES ACIMA*/
+        /* Capa do Livro - Responsividade */
+        @media (max-width: 768px) {
+            .capa-livro {
+                height: 70vh; /* Reduz a altura da capa */
+            }
+            .capa-livro::before {
+                background-position: center center; /* centraliza melhor no mobile */
+            }
+            .capa-livro .titulo-materia {
+                font-size: 40px; /* Reduz o tamanho do título */
+            }
+
+            .capa-livro .subtitulo-professor {
+                font-size: 24px; /* Reduz o tamanho do subtítulo */
+            }
+            .capa-livro .titulo-programa {
+                font-size: 18px;
+            }
+            .capa-livro .conteudo-capa {
+                padding: 15px; /* Ajusta o padding para telas menores */
+            }
+        }   
+            /* Seção Introdução - Responsividade */
+        @media (max-width: 768px) {
+            .barra-superior {
+                padding: 10px; /* Reduz o padding da barra */
+            }
+
+            .barra-superior .titulo-barra {
+                font-size: 1.6rem;
+                max-width: 800px;
+                margin: 10px 0;
+                padding: 0 30px;
+                text-align: left;
+            }
+
+            .introducao .titulo-introducao {
+                font-size: 2.8rem; /* Reduz o tamanho do título da introdução */
+                margin-top: 20px; /* Ajusta o espaçamento superior */
+            }
+
+            .introducao .caixa-texto {
+                padding: 20px; /* Reduz o padding da caixa de texto */
+                width: 100%; /* Ajusta a largura da caixa */
+            }
+
+            .introducao .caixa-texto p {
+                font-size: 1rem; /* Reduz o tamanho do texto */
+                line-height: 1.4;
+                margin-bottom: 10px; /* Ajusta a margem entre os parágrafos */
+            }
+            .introducao .conteudo-centralizado {
+                max-width: 800px;
+                margin: 10px 0;
+                padding: 0 40px;
+            }
+        }
+        /* Responsividade para o título da seção de Programa */
+        @media (max-width: 768px) {
+            .titulo-programa {
+                font-size: 50px; /* Ajuste do tamanho do título */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .titulo-programa {
+                font-size: 35px; /* Ajuste para telas muito pequenas */
+            }
+        }
+        /* Estilo base da seção */
+        .secao1 .conteudo-secao {
+            width: 100% !important;
+            padding: 64px 0 !important; /* padding vertical conforme solicitado */
+            box-sizing: border-box !important;
+        }
+        .secao1 .acordeon-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .secao1 .tabs-section {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        /* Estilo base da seção */
+        .secao1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #9f43be11;
+            padding: 20px;
+        }
+        .secao1 .outer-container-alt {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+       }
+        /* Imagem de topo */
+        .secao1 .imagem-topo {
+            width: 100%;
+            height: auto;
+            max-height: 290px; /* ajuste essa altura conforme necessário */
+            object-fit: cover; /* garante que a imagem preencha sem distorcer */
+            display: block;
+            margin: 0;
+            padding: 0;
+            background-color: #FFF;
+        }
+
+        /* Faixa verde */
+        .secao1 .faixa-verde {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .secao1 .faixa-verde .titulo-secao {
+            font-size: 25px !important;
+            font-family: 'Roboto', sans-serif;
+            color: #015A42; /* Cor verde */
+            width: 90%;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .secao1 .titulo-verde {
+            font-size: 20px;
+            font-family: 'Roboto', sans-serif;
+            color: #015A42; /* Cor verde */
+            width: 90%;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        /* Parágrafo padrão */
+        .secao1 p {
+            font-size: 19px;
+            text-align: justify;
+            line-height: 1.6;
+            color: #333;
+            margin: 10px auto;
+            width: 90%;
+            max-width: 800px;    
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .secao1 .faixa-verde .titulo-secao {
+                font-size: 20px;
+            }
+
+            .secao1 p {
+                font-size: 1rem;
+            }
+            .secao1 .imagem-topo {
+                max-height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .secao1 .faixa-verde .titulo-secao {
+                font-size: 20px;
+            }
+
+            .secao1 p {
+                font-size: 0.95rem;
+            }
+        }
+        /* Estilo base da seção */
+        .secao2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .secao2 .conteudo-secao {
+            width: 100%;
+            padding: 64px 0;
+            box-sizing: border-box;
+        }
+        .secao2 .acordeon-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 10px auto;
+        }
+       .secao2 .outer-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+       }
+        /* Imagem de topo */
+        .secao2 .imagem-topo {
+            width: 100%;
+            height: auto;
+            max-height: 290px; /* ajuste essa altura conforme necessário */
+            object-fit: cover; /* garante que a imagem preencha sem distorcer */
+            display: block;
+            margin: 0;
+            padding: 0;
+            background-color: #FFF;
+        }
+
+        /* Faixa verde */
+        .secao2 .faixa-verde {
+            width: 100%;
+            background-color: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .secao2 .faixa-verde .titulo-secao {
+            font-size: 25px !important;
+            font-family: 'Roboto', sans-serif;
+            color: #015A42; /* Cor verde */
+            width: 100%;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .secao2 .titulo-verde {
+            font-size: 20px;
+            font-family: 'Roboto', sans-serif;
+            color: #3a95a6; /* Cor verde */
+            width: 90%;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        /* Parágrafo padrão */
+        .secao2 p {
+            font-size: 19px;
+            font-family: 'Roboto', sans-serif;
+            text-align: justify;
+            line-height: 1.6;
+            color: #333;
+            margin: 10px auto;
+            width: 90%;
+            max-width: 800px;
+                 
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .secao2 .faixa-verde .titulo-secao {
+                font-size: 30px;
+            }
+
+            .secao2 p {
+                font-size: 1rem;
+            }
+            .secao2 .imagem-topo {
+                max-height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .secao2 .faixa-verde .titulo-secao {
+                font-size: 24px;
+            }
+
+            .secao2 p {
+                font-size: 0.95rem;
+            }
+        }
+        /* Parágrafo com recuo interno */
+            .paragrafo-recuo {
+                font-size: 19px;
+                text-align: justify;
+                line-height: 1.6;
+                color: #333;
+                margin: 20px auto;
+                width: 90%;
+                max-width: 800px;
+                font-family: 'Roboto', sans-serif;
+                padding-left: 40px; /* recuo uniforme */
+                text-indent: 0; /* remove indentação da primeira linha */
+            }
+
+            /* Responsivo */
+            @media (max-width: 768px) {
+                .paragrafo-recuo {
+                    font-size: 1rem;
+                    text-indent: 25px;
+                    padding-left: 10px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .paragrafo-recuo {
+                    font-size: 0.95rem;
+                    text-indent: 20px;
+                    padding-left: 8px;
+                }
+            }
+
+               /* === Bloco de Figura (sem slider) === */
+        .bloco-figura {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+           --cor-borda: #9F43BE; /* Cor padrão (roxo, por exemplo) */
+            border: 2px solid var(--cor-borda);
+            background-color: #fff;
+            border-radius: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+                /* Tema verde (usa variável CSS) */
+        .tema-usfverde {
+            --cor-borda: #015A42; /* Verde médio */
+        }
+
+                /* Apenas para o bloco da Figura 20 */
+        .bloco-figura.figura-20 {
+            border: 2px solid #015A42;
+        }
+        /* Título */
+        .bloco-figura .titulo-figura {
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: normal; /* remove o negrito */
+            font-style: normal;  /* caso também queira evitar itálico */
+        }
+        .bloco-figura .figura::after {
+            content: " "; /* espaço */
+            white-space: pre; /* garante que o espaço seja preservado */
+        }
+        .bloco-figura .titulo-figura .figura {
+            color: #015A42; /* verde padrão */
+        }
+
+        /* Imagem centralizada */
+        .bloco-figura .figura-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .bloco-figura .figura-container img {
+            max-width: 90%;
+            height: auto;
+        }
+
+        /* Fonte */
+        .bloco-figura .fonte-imagem {
+            font-size: 12px;
+            color: #555;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Descrição */
+        .bloco-figura .descricao-figura {
+            font-size: 14px;
+            color: #333;
+            text-align: justify;
+            line-height: 1.5;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .bloco-figura {
+                padding: 15px;
+            }
+            .bloco-figura .titulo-figura {
+                font-size: 18px;
+            }
+            .bloco-figura .descricao-figura {
+                font-size: 13px;
+            }
+        }
+        /* === Bloco Horizontal === */
+        .bloco-figura-horizontal {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            border: 2px solid #9F43BE;
+            background-color: #fff;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Título */
+        .bloco-figura-horizontal .titulo-figura {
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: left;
+            font-weight: normal; /* remove o negrito */
+            font-style: normal;  /* caso também queira evitar itálico */
+        }
+        .bloco-figura-horizontal .figura::after {
+            content: " "; /* espaço */
+            white-space: pre; /* garante que o espaço seja preservado */
+        }
+        .bloco-figura-horizontal .titulo-figura .figura {
+            color: #015A42; /* verde padrão */
+        }
+
+        /* Layout horizontal */
+        .conteudo-horizontal {
+            display: flex;
+            align-items: center; /* centraliza verticalmente imagem e texto */
+            justify-content: center;
+            flex-wrap: wrap; /* quebra em telas menores */
+        }
+
+        /* Imagem */
+        .lado-imagem {
+            flex: 1 1 41%;
+            text-align: center !important;
+        }
+
+        .lado-imagem img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 8px;
+        }
+
+        /* Fonte abaixo da imagem */
+        .lado-imagem .fonte-imagem {
+            font-size: 10px !important;
+            color: #555;
+            text-align: justify !important;
+            margin-left: 5px;
+        }
+
+        /* Texto */
+        .lado-texto {
+            flex: 1 1 55%;
+        }
+
+        .lado-texto .paragrafo-figura {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: justify;
+            line-height: 1.5;
+        }
+
+        .lado-texto .descricao-figura {
+            font-size: 14px;
+            color: #333;
+            text-align: justify;
+            line-height: 1.5;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .conteudo-horizontal {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .lado-imagem, .lado-texto {
+                flex: 1 1 100%;
+                text-align: center;
+            }
+
+            .lado-imagem .fonte-imagem {
+                text-align: center;
+                margin-left: 0;
+            }
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: grab;
+            overflow: hidden;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* garante que se ajuste à tela inicialmente */
+            transition: transform 0.2s ease;
+            transform-origin: center center;
+        }
+        .lightbox-hint {
+            position: absolute;
+            bottom: 20px;
+            color: #fff;
+            font-size: 14px;
+            opacity: 0.8;
+            font-family: sans-serif;
+            text-align: center;
+            animation: fadeOut 4s forwards; /* some sozinho */
+        }
+        .zoomable {
+            cursor: zoom-in; /* ícone de lupa ao passar o mouse */
+            transition: transform 0.2s ease;
+        }
+
+        .zoomable:hover {
+            transform: scale(1.02); /* leve efeito de destaque no hover */
+        }
+        @keyframes fadeOut {
+            0% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { opacity: 0; }
+        }
+                /* Animação suave */
+                @keyframes zoomIn {
+                    from { transform: scale(0.7); opacity: 0; }
+                    to { transform: scale(1); opacity: 1; }
+                }
+
+        
+        .slider-texto-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            border: 2px solid #3a95a6;
+            padding: 20px 30px;
+            box-sizing: border-box;
+            overflow: hidden;
+            background-color: #FFF;
+            border-radius: 8px;
+        }
+        .slider-texto-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slide-texto {
+            display: none;
+            flex-shrink: 0;
+            width: 100%;
+            text-align: center;
+            word-break: keep-all;
+            white-space: normal;
+            
+        }
+
+        .slide-texto.ativo {
+            display: block;
+        }
+
+        /* Container de imagens dentro do slide */
+        .slide-imagens {
+            display: flex;
+            flex-direction: column; /* padrão: empilha vertical */
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px; /* espaçamento interno para não colar nas bordas */
+            box-sizing: border-box;
+        }
+                /* Apenas para slides com imagens maiores */
+        .slide-com-imagens-maiores .slider-img {
+            max-width: 400px;  /* aumenta o tamanho */
+            max-height: 400px;
+        }
+                /* Apenas para slides com imagens maiores */
+        .slide-com-tres-imagens .slider-img {
+            max-width: 300px;  /* aumenta o tamanho */
+            max-height: 300px;
+        }
+
+        /* Responsividade: telas menores empilham colunas */
+        @media (max-width: 768px) {
+                        /* Apenas para slides com imagens maiores */
+            .slide-com-imagens-maiores .slider-img {
+                max-width: 200px;  /* aumenta o tamanho */
+                max-height: 200px;
+            }
+                /* Apenas para slides com imagens maiores */
+            .slide-com-tres-imagens .slider-img {
+                max-width: 150px;  /* aumenta o tamanho */
+                max-height: 150px;
+            }
+        }
+
+        /* Apenas slides que possuem colunas */
+        .slide-imagens.colunas {
+            display: flex;
+            flex-direction: row; /* colunas lado a lado */
+            justify-content: center; /* centraliza colunas no slide */
+            gap: 20px; /* espaço entre colunas */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        /* Colunas individuais */
+        .coluna-imagem {
+            display: flex;
+            flex-direction: column; /* empilha imagens dentro da coluna */
+            gap: 10px; /* espaço entre imagens */
+            align-items: center; /* centraliza horizontalmente */
+            justify-content: center; /* centraliza verticalmente dentro da coluna */
+            flex: 1; /* cada coluna ocupa largura proporcional igual */
+        }
+
+        /* Responsividade: telas menores empilham colunas */
+        @media (max-width: 768px) {
+            .slide-imagens.colunas {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        /* Imagens zoomable pequenas */
+        .slider-img {
+            max-width: 250px; /* ajuste o tamanho desejado */
+            max-height: 250px;
+            cursor: pointer; /* indica que pode ser clicada */
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            transition: transform 0.2s ease;
+        }
+
+        .slider-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .titulo-texto {
+            color: #b9e5a9;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-family: 'Roboto', sans-serif;
+            width: 100%;
+        }
+
+        .conteudo-texto {
+            font-size: 16px !important;
+            color: #333 !important;
+            font-family: 'Roboto', sans-serif !important;
+            width: 100%;
+            margin: 0 auto;
+            word-break: normal;
+            white-space: normal;
+            text-align: center !important;
+        }
+        .titulo-texto,
+        .conteudo-texto {
+            word-break: break-word;
+            white-space: normal;
+        }
+        .seta-texto {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            border: none;
+            font-size: 30px;
+            color: #3a95a6;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 10;
+        }
+
+        .seta-texto.esquerda {
+            left: 0;
+        }
+
+        .seta-texto.direita {
+            right: 0;
+        }
+
+    @media (max-width: 768px) {
+        .titulo-texto {
+            font-size: 20px;
+        }
+
+        .conteudo-texto {
+            font-size: 18px;
+        }
+
+        .seta-texto {
+            font-size: 24px;
+        }
+    }
+        .slider-texto-indicadores {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .dot-texto {
+            height: 12px;
+            width: 12px;
+            margin: 0 6px;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot-texto.ativo {
+            background-color: #3a95a6;
+        }
+        /* ------------------- */
+        /* TEMAS DE COR        */
+        /* ------------------- */
+
+        /* Tema verde */
+        .tema-verde {
+            border-color: #015A42;
+        }
+        .tema-verdeborda {
+            border-color: #015A42 !important;
+        }
+        .tema-verde .seta-texto {
+            color: #015A42;
+        }
+        .tema-verde .dot-texto.ativo {
+            background-color: #015A42;
+        }
+
+        /* Tema roxo */
+        .tema-roxo {
+            border-color: #015A42;
+        }
+        .tema-roxo .seta-texto {
+            color: #015A42;
+        }
+        .tema-roxo .dot-texto.ativo {
+            background-color: #015A42;
+        }
+
+        /* Tema roxo */
+        .tema-green {
+            border-color: #9F43BE;
+        }
+        .tema-green .seta-texto {
+            color: #9F43BE;
+        }
+        .tema-green .dot-texto.ativo {
+            background-color: #9F43BE;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .seta-texto { font-size: 24px; }
+            .conteudo-texto { font-size: 18px; }
+        }
+
+         /* TESTES */
+
+        .quadro-problema {
+            max-width: 800px;
+            width: 95%; /* adapta o quadro à tela menor */
+            margin: 20px auto;
+            border: 2px solid #015A42;
+            border-radius: 10px;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .quadro-problema .topo {
+            background-color: #ffffff;
+            padding: 10px;
+            
+        }
+
+        .quadro-problema .resolucao {
+            background-color: #E2F4EB;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .quadro-problema h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .quadro-problema p {
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .quadro-problema code {
+            background-color: #d9f0e1;
+            padding: 2px 4px;
+            border-radius: 20px;
+            font-family: monospace;
+        }
+        .figura-container-reduzida {
+            text-align: center; /* centraliza a imagem */
+            margin: 15px 0; /* espaço acima e abaixo da imagem */
+        }
+
+        .figura-container-reduzida img {
+            max-width: 50%; /* imagem ocupa a largura total no mobile */
+            height: auto; /* mantém proporção */
+            border-radius: 4px; /* opcional, suaviza bordas */
+        }
+        
+        .resolucao .item-recuado {
+            display: block;
+            padding-left: 25px !important;
+            position: relative;
+        }
+
+        .resolucao .item-recuado::before {
+            position: absolute;
+            left: 10px;   /* posição do ponto */
+            top: 0;
+            font-weight: bold;
+        }
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .quadro-problema {
+                width: 90%;
+                font-size: 15px;
+            }
+            .quadro-problema .resolucao {
+                padding: 15px 14px; /* mais respiro lateral */
+                overflow-x: auto; /* permite rolagem horizontal se fórmula for muito longa */
+                -webkit-overflow-scrolling: touch;
+                border-radius: 0 0 10px 10px;
+            }
+
+            .quadro-problema p {
+                font-size: 15px;
+                line-height: 1.5;
+            }
+
+            .figura-container-reduzida img {
+                max-width: 100%; /* imagem se ajusta completamente */
+            }
+
+            .quadro-problema .resolucao {
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quadro-problema {
+                width: 95%;
+                border-width: 1.5px;
+            }
+
+            .quadro-problema p {
+                font-size: 14px;
+            }
+
+            .figura-container-reduzida img {
+                max-width: 100%;
+            }
+        }
+
+        /* Wrapper universal para expressões longas */
+        .math-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 4px; /* espaço para o scroll no mobile */
+        }
+
+        /* Impede MathJax de estourar o container */
+        .math-wrapper mjx-container {
+            display: inline-block;
+            max-width: 100%;
+            white-space: nowrap;
+        }
+
+          .lista-compacta {
+            list-style: none; 
+            margin: 0;
+            padding: 0;
+            padding-left: 80px;     /* recuo original (preservado) */
+        }
+
+        .lista-compacta li {
+            position: relative;
+            padding-left: 20px;
+            margin: 20px 0;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .lista-compacta li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 20px;
+        }
+        /* MOBILE */
+        @media (max-width: 600px) {
+            .lista-compacta {
+                padding-left: 30px;   /* reduz recuo só no mobile */
+                margin-left: 0;       /* corrige margem negativa que aparecia */
+            }
+
+            .lista-compacta li {
+                padding-left: 18px;   /* ajusta espaço da seta */
+                margin: 16px 0;
+                font-size: 1rem;
+            }
+
+            .lista-compacta li::before {
+                font-size: 18px;
+                left: 0;
+            }
+        }
+
+        .fundo-transparente {
+            mix-blend-mode: multiply;
+        }
+        /* Título centralizado fora do container */
+        .titulo-figura-central {
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+            font-weight: normal;
+            margin: 20px auto 15px auto;
+        }
+
+        .titulo-figura-central .figura {
+            color: #015A42; /* verde padrão */
+        }
+
+        .titulo-figura-central .figura::after {
+            content: " ";
+            white-space: pre;
+        }
+
+        /* Bloco de figura simples (sem borda e sem fundo) */
+        .bloco-figura-simples {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0;
+            background: none;
+            border: 2px solid #015A42;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Imagem centralizada */
+        .bloco-figura-simples .figura-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .bloco-figura-simples .figura-container img {
+            max-width: 75%;
+            height: auto;
+            display: block;
+        }
+
+        /* Fonte abaixo da imagem */
+        .bloco-figura-simples .fonte-imagem {
+            font-size: 12px;
+            color: #555;
+            text-align: center;
+            margin: 5px auto 12px auto;
+            max-width: 90%;
+        }
+
+        /* Descrição mais larga */
+        .bloco-figura-simples .descricao-figura-larga {
+            font-size: 14px;
+            color: #333;
+            text-align: justify;
+            line-height: 1.5;
+            max-width: 95%;
+            margin: 0 auto;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .titulo-figura-central {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            .bloco-figura-simples .descricao-figura-larga {
+                font-size: 13px;
+                max-width: 100%;
+            }
+        }
+        /* Container dos vídeos */
+        .container-videos {
+            border: 2px solid #015A42;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        
+        .play-icon {
+            display: flex;
+            /* Flexbox para centralizar o conteúdo */
+            justify-content: center;
+            align-items: center;
+            background-color: #015A42;
+            /* Fundo verde */
+            color: #FFF;
+            /* Ícone branco */
+            width: 90px;
+            /* Largura do botão */
+            height: 55px;
+            /* Altura do botão */
+            border-radius: 13px;
+            font-size: 40px;
+            /* Tamanho do ícone */
+            cursor: pointer;
+            /* Cursor de clique */
+            transition: transform 0.3s ease;
+            /* Efeito de transição */
+        }
+    
+        .play-icon:hover {
+            transform: scale(1.1);
+            /* Aumenta levemente no hover */
+        }
+    
+        /* Responsividade - Ajuste para telas menores */
+        @media (max-width: 768px) {
+            .play-icon {
+                width: 60px;
+                /* Diminui a largura */
+                height: 40px;
+                /* Diminui a altura */
+                font-size: 25px;
+                /* Diminui o tamanho do ícone */
+            }
+        }
+    
+        /* Modal - Oculto por padrão */
+        .video-modal {
+            display: none;
+            /* Inicialmente o modal está oculto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Fundo escuro transparente */
+            z-index: 1000;
+            /* Garantir que o modal fique acima de outros conteúdos */
+            justify-content: center;
+            align-items: center;
+        }
+    
+        /* Conteúdo do modal (onde ficará o vídeo) */
+        .video-content {
+            position: relative;
+            background-color: #015A42;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    
+        /* Responsividade - Ajustes para dispositivos móveis */
+        @media (max-width: 768px) {
+            .video-content {
+                max-width: 100%;
+                /* Maximize a largura do modal no mobile */
+                padding: 10px;
+            }
+    
+            .video-content iframe {
+                width: 100%;
+                /* O iframe ocupará toda a largura disponível */
+                height: 56.25vw;
+                /* Isso mantém a proporção de 16:9 */
+                max-height: 80vh;
+                /* Evita que o vídeo ultrapasse a tela */
+                border-radius: 10px;
+            }
+        }
+    
+        /* Botão de fechar */
+        .close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 40px;
+            color: #FFF;
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+    
+        .close-btn:hover {
+            transform: scale(1.2);
+            /* Aumenta levemente no hover */
+            color: #FF0000;
+            /* Muda a cor para vermelho no hover */
+        }
+    
+        /* Container */
+        .video-play-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+        }
+    
+        /* Botão circular */
+        .video-play-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #017A5A, #015A42);
+            /* Gradiente verde */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            color: #FFF;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            font-size: 55px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+    
+        /* Efeito pulsante */
+        .video-play-btn::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid rgba(1, 90, 66, 0.6);
+            animation: pulse 2s infinite;
+        }
+    
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+    
+            70% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+    
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+    
+        .video-play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+    
+        /* Texto abaixo */
+        .video-play-text {
+            margin-top: 10px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            color: #015A42;
+            font-weight: 600;
+        }
+    
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .video-play-btn {
+                width: 70px;
+                height: 70px;
+                font-size: 35px;
+            }
+    
+            .video-play-btn::after {
+                width: 85px;
+                height: 85px;
+            }
+    
+            .video-play-text {
+                font-size: 14px;
+            }
+        }
+    
+        .video-row {
+            display: flex;
+            justify-content: center;
+            /* centraliza os vídeos */
+            gap: 50px;
+            /* espaço entre os players */
+            flex-wrap: wrap;
+            /* quebra para baixo em telas pequenas */
+            margin: 30px 0;
+        }
+    
+        .video-row .video-play-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .download-section {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+    
+        .download-btn {
+            background-color: #9F43BE;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            margin-top: 80px;
+        }
+    
+        .download-btn i {
+            font-size: 18px;
+        }
+    
+        .download-btn:hover {
+            background-color: #7D3598;
+        }
+    
+        /* ===== Seções de Conclusão e Referências ===== */
+        .conclusao,
+        .referencias {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+    
+        .conclusao {
+            background-color: #E2F4EB;
+            /* fundo suave */
+        }
+    
+        .referencias {
+            background-color: #FFF;
+            border-top: 3px solid #015A42;
+            border-bottom: 3px solid #015A42;
+        }
+    
+        /* Títulos */
+        .titulo-conclusao,
+        .titulo-referencias {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 50px;
+            font-weight: lighter;
+            color: #015A42;
+            margin: 10px auto 20px auto;
+            text-align: left;
+            /* garante centralização em desktop */
+        }
+    
+        /* Caixas de texto */
+        .conclusao .caixa-texto,
+        .referencias .caixa-texto {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    
+        /* Parágrafos */
+        .conclusao .caixa-texto p,
+        .referencias .caixa-texto p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 19px;
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+    
+        /* Cores de texto diferentes */
+        .conclusao .caixa-texto p {
+            color: #333;
+        }
+    
+        .referencias .caixa-texto p {
+            color: #000;
+        }
+    
+        /* Links em referências */
+        .referencias .caixa-texto a {
+            word-break: break-all;
+            color: #015A42;
+            text-decoration: underline;
+        }
+    
+        /* Responsividade */
+        @media (max-width: 768px) {
+    
+            .titulo-conclusao,
+            .titulo-referencias {
+                font-size: 2rem;
+            }
+    
+            .conclusao .caixa-texto p,
+            .referencias .caixa-texto p {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+    
+            .conclusao .caixa-texto,
+            .referencias .caixa-texto {
+                max-width: 95%;
+                padding: 15px;
+            }
+        }
+    
+        @media (max-width: 480px) {
+    
+            .titulo-conclusao,
+            .titulo-referencias {
+                font-size: 1.8rem;
+            }
+    
+            .conclusao .caixa-texto,
+            .referencias .caixa-texto {
+                max-width: 100%;
+                padding: 10px;
+            }
+        }
+    
+        /* Estilização do rodapé */
+        .footer {
+            border-top: 3px solid #015A42;
+            /* Borda superior */
+            background-color: #FFFFFF;
+            /* Fundo branco */
+            text-align: center;
+            /* Centralizar texto */
+            padding: 15px 0;
+            /* Espaçamento interno */
+            box-sizing: border-box;
+            /* Inclui padding nas dimensões */
+        }
+    
+        .footer p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: #015A42;
+            /* Cor do texto */
+            margin: 0;
+            /* Remove espaçamento externo */
+        }
+    
+        /* Texto descritivo */
+        .footer .fonte-menor {
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            color: #555;
+            /* Cor neutra */
+            line-height: 1.5;
+            /* Espaçamento entre linhas */
+            display: block;
+            /* Garante quebra para nova linha */
+            margin-top: 10px;
+            /* Espaço entre o texto e o divisor */
+        }
+    
+        /* Divisor */
+        .footer-divider {
+            border: none;
+            /* Remove borda padrão */
+            height: 1px;
+            /* Altura da linha */
+            background-color: #015A42;
+            /* Cor da linha */
+            margin: 10px auto;
+            /* Espaçamento vertical */
+            width: 80%;
+            /* Define a largura do divisor */
+            opacity: 0.5;
+            /* Reduz opacidade para suavizar */
+        }
+    
+        /* Ajustes do rodapé para mobile */
+        @media (max-width: 480px) {
+            .footer p {
+                font-size: 15px;
+                /* Ajusta o tamanho da fonte */
+            }
+    
+            .footer .fonte-menor {
+                font-size: 12px;
+                /* Reduz tamanho da fonte */
+                line-height: 1.4;
+                /* Ajusta o espaçamento */
+            }
+    
+            .footer-divider {
+                width: 100%;
+                /* Ajusta largura do divisor no mobile */
+            }
+        }
+    
+        .logo-final {
+            background-color: #b9e5a92c;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 3px solid #015A42;
+        }
+    
+        .logo-final img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+    
+        /* Nova seção com os títulos ocupando a tela inteira */
+        .ficha-titulos {
+            background-color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+    
+        .ficha-titulos h2,
+        .ficha-titulos h3 {
+            font-family: 'Bebas Neue', cursive;
+            font-weight: lighter;
+            font-size: 40px;
+            color: #0058B4;
+            margin: 10px 0;
+        }
+    
+        /* Mantemos a ficha técnica como estava */
+        .ficha-tecnica {
+            background-color: #FFF;
+            padding: 60px 20px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+    
+        .ficha-tecnica p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 15px auto;
+            max-width: 700px;
+        }
+    
+        .ficha-tecnica strong {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    
+        .paragraforeduzido {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="logo">
+                <img src="https://drive.google.com/thumbnail?id=1iZTd5_tOqqVTFtrgbqdKazN1J1Yk-PuE" alt="Logo">
+            </div>
+            <div class="menu-toggle">
+                <i class="bx bx-menu"></i>
+                <i class="bx bx-x" style="display: none;"></i> <!-- Ícone de fechar menu -->
+            </div>
+            <ul>
+                <li><a href="#introducao">Introdução</a></li>
+                <li><a href="#secao1">Tópico 1</a></li>
+                <li><a href="#secao2">Tópico 2</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#conclusao">Conclusão</a></li>
+                <li><a href="#referencias">Refs Bibliográficas</a></li>
+            </ul>
+        </div>
+        
+        
+        <!-- ESPAÇAMENTO -->
+        <section id="titulo" class="titulo-intro">
+            <h1 class="titulo-programa"></h1>
+        </section>
+        <!-- ESPAÇAMENTO -->
+        <section id="titulo" class="titulo-intro">
+            <h1 class="titulo-programa"></h1>
+        </section>
+        <!-- ESPAÇAMENTO -->
+        
+        <!-- Capa do Livro -->
+        <section id="capa-livro" class="capa-livro">
+            <div class="borda superior"></div>
+            <div class="conteudo-capa">
+                <h1 class="titulo-programa">PROGRAMA DE ATUALIZAÇÃO em fundamentos da</h1>
+                <h1 class="titulo-materia">Matemática PARA ENGENHARIA - NÍVEL 1</h1>
+                <h2 class="subtitulo-professor">Profª MEª Elisabeth Conceição Sena Gonçalves</h2>
+                <h2 class="subtitulo-professor">Profª MEª FlÁvia Cristina Franco de Lima ROSA</h2>
+            </div>
+            <div class="borda inferior"></div>
+        </section>
+        
+        <!-- ESPAÇAMENTO -->
+        <section id="titulo" class="titulo-intro">
+            <h1 class="titulo-programa"></h1>
+        </section>
+        <!-- ESPAÇAMENTO -->
+        <section id="titulo" class="titulo-intro">
+            <h1 class="titulo-programa"></h1>
+        </section>
+        <!-- ESPAÇAMENTO -->
+        
+        
+        <!-- Seção Introdução -->
+        <section id="introducao" class="introducao">
+            <!-- Barra Superior -->
+            <div class="barra-superior">
+                <h1 class="titulo-barra">UNIDADE 5 | PRODUTOS NOTÁVEIS E FATORAÇÃO</h1>
+            </div>
+        
+            <!-- Conteúdo -->
+            <div class="caixa-texto">
+                <div class="conteudo-centralizado">
+                    <h1 class="titulo-introducao">INTRODUÇÃO</h1>
+                    <p>
+                        Você já percebeu como certos ângulos e medidas aparecem em situações que parecem simples, como na
+                        inclinação de uma escada ou no formato de um telhado? A trigonometria ajuda a entender essas relações
+                        entre lados e ângulos, especialmente quando estamos diante de triângulos. Nesta unidade, vamos iniciar
+                        com o estudo da trigonometria no triângulo retângulo, conhecendo razões como seno, cosseno e tangente,
+                        além do famoso Teorema de Pitágoras, que certamente você já ouviu falar em algum momento.
+                    </p>
+                    <p>
+                        Ao longo do conteúdo, vamos também aprender a aplicar esses conhecimentos em triângulos que não têm
+                        um ângulo reto, por meio da lei dos senos e da lei dos cossenos. Tudo será apresentado com exemplos
+                        práticos e explicações passo a passo, para que você consiga entender como utilizar essas ferramentas
+                        matemáticas na resolução de problemas. Com atenção e treino, você verá que essas relações podem ser
+                        mais úteis e acessíveis do que parecem.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="secao1" id="secao1">
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    1. TRIGONOMETRIA NO TRIÂNGULO RETÂNGULO
+                </h1>
+            </div>
+            <p>
+                Para iniciar o estudo de trigonometria no triângulo retângulo vamos rever os elementos de um triângulo
+                retângulo.
+            </p>
+            <p>
+                Um triângulo retângulo possui um ângulo de 90°, que é classificado como reto. Deste modo, seu nome
+                é derivado do ângulo reto que ele possui. Além disso, os seus lados são classificados em catetos e
+                hipotenusa. A hipotenusa é o lado que possui a maior medida e é o lado oposto ao ângulo reto. Os outros
+                dois lados são os catetos (Dante, 2011).Observe na figura a seguir:
+            </p>
+            <br>
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-green">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 1</strong>.</span> Triângulo retângulo e classificação dos lados</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765558503/figura_1_yeoo5a.jpg"
+                        alt="">
+                </div>
+                <br>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+            
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem ilustra um triângulo retângulo, isto é, um triângulo que possui um ângulo de 90 graus, indicado pelo símbolo de
+                    um pequeno quadrado com um ponto dentro, no vértice A. O lado oposto ao ângulo reto é o lado de maior comprimento,
+                    chamado de hipotenusa
+                    (representado por “a”, entre os pontos B e C). Os outros dois lados, que formam o ângulo reto, são os catetos: o cateto
+                    “b”, entre os pontos A e C,
+                    e o cateto “c”, entre os pontos A e B. Essa classificação é essencial para o estudo da trigonometria e do teorema de
+                    Pitágoras.
+            </section>
+            <br>
+            <p>
+                Deslize pelas setas para ler:
+            </p>
+
+            <br>
+            <section class="slider-texto-container tema-green" data-slider-id="1">
+                <!-- conteúdo do slider 2 -->
+                <div class="slider-texto-wrapper">
+                    <div class="slide-texto ativo">
+                        <p class="conteudo-texto">
+                            O lado \( \underline{BC} \), oposto ao ângulo reto, é a hipotenusa.
+                            Sua medida é igual a \( a \), comumente escrevemos
+                            \( \mathrm{med}(\underline{BC}) = a \).
+                        </p>
+                    </div>
+                    <div class="slide-texto">
+                        <p class="conteudo-texto">
+                            Os lados \( \underline{AB} \) e \( \underline{AC} \) são os catetos, onde 
+                            \( \mathrm{med}(\underline{AB}) = c \ \) e \( \ \mathrm{med}(\underline{AC}) = b \).
+                        </p>
+                    </div>
+                </div>
+                <button class="seta-texto esquerda" onclick="mudarSlideTexto(this, -1)">&#10094;</button>
+                <button class="seta-texto direita" onclick="mudarSlideTexto(this, 1)">&#10095;</button>
+                <div class="slider-texto-indicadores">
+                </div>
+            </section>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.1 O TEOREMA DE PITÁGORAS
+                </h1>
+            </div>
+            <p>
+                O Teorema de Pitágoras é uma relação que envolve tanto medidas lineares quanto medidas de áreas de
+                quadrados (Iezzi et al., 2010). Para compreender melhor essa relação entre os lados de um triângulo retângulo,
+                observe a representação gráfica a seguir. A figura ilustra os elementos envolvidos no Teorema de Pitágoras,
+                destacando os catetos, a hipotenusa e sua disposição em relação ao ângulo reto. Essa visualização ajuda
+                a entender como a fórmula é aplicada na prática e como se estabelece a equivalência entre as medidas.
+            </p>
+
+            <br>
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-green">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 2</strong>.</span> Representação do Teorema de Pitágoras</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765558503/figura_1_yeoo5a.jpg"
+                        alt="">
+                </div>
+                <br>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+                <p>$$ a^2 = b^2 + c^2 $$</p>
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem apresenta um triângulo retângulo com vértices A, B e C, sendo o ângulo reto localizado no vértice A. Os lados
+                    “b” (AC) e “c” (AB) são os catetos, enquanto o lado “a” (BC), oposto ao ângulo reto, é a hipotenusa. O Teorema de
+                    Pitágoras estabelece que, em
+                    qualquer triângulo retângulo, o quadrado da medida da hipotenusa é igual à soma dos quadrados das medidas dos catetos.
+                    Essa relação é expressa
+                    pela fórmula: a² = b² + c². Essa equação conecta diretamente as medidas lineares dos lados com as áreas dos quadrados
+                    construídos sobre eles.
+            </section>
+            <br>
+            <p>
+                Para facilitar a compreensão da fórmula e sua aplicação prática, vamos observar agora um exemplo com
+                medidas numéricas. Esse exemplo mostra como a relação entre os lados do triângulo retângulo pode ser
+                utilizada para confirmar, na prática, o que o Teorema de Pitágoras estabelece de forma teórica.
+            </p>
+            <br>
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-green">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 3</strong>.</span> Exemplo numérico do Teorema de Pitágoras</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765558503/figura_1_yeoo5a.jpg"
+                        alt="">
+                </div>
+                <br>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+                <p>$$ 3^2 + 4^2 = 5^2, \ pois \ 9+16 = 25 $$</p>
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem mostra um triângulo retângulo com os catetos medindo 3 centímetros e 4 centímetros, e a hipotenusa medindo
+                    5 centímetros. Esse exemplo ilustra a aplicação do Teorema de Pitágoras, demonstrando que o quadrado da hipotenusa (5²)
+                    é igual à soma dos
+                    quadrados dos catetos (3² + 4²), já que 9 mais 16 é igual a 25. Trata-se de um exemplo clássico de um triângulo
+                    pitagórico, em que os comprimentos
+                    dos lados satisfazem exatamente a relação proposta pelo teorema.
+            </section>
+            <br>
+            <p>
+                Agora que já vimos como aplicar numericamente o Teorema de Pitágoras, é interessante observar uma
+                representação visual que destaca o significado geométrico dessa relação. Ao analisar as áreas construídas
+                sobre os lados do triângulo retângulo, conseguimos perceber de forma clara como os quadrados formados
+                sobre os catetos se relacionam com o quadrado da hipotenusa. Vamos observar isso na próxima figura.
+            </p>
+            <br>
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-green">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 4</strong>.</span> Representação geométrica do Teorema de Pitágoras</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" style="max-width: 80%; width: 50%;" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765559391/figura_4_vdbiti.jpg"
+                        alt="">
+                </div>
+                <br>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem apresenta um triângulo retângulo em amarelo, acompanhado de três quadrados construídos sobre seus lados.
+                    Cada quadrado tem sua área proporcional ao comprimento do lado sobre o qual foi construído. A figura evidencia
+                    visualmente que a área do quadrado sobre a hipotenusa (o maior dos três) é igual à soma das áreas dos quadrados construídos sobre os catetos. Essa
+                    é uma representação clássica e intuitiva do Teorema de Pitágoras, demonstrando a relação entre áreas e lados em triângulos retângulos.
+            </section>
+            <br>
+            <p>
+                Em várias civilizações antigas, como a egípcia, a babilônica e a chinesa, há registros do uso da relação
+                estabelecida pelo Teorema de Pitágoras, especialmente por meio do famoso triângulo 3, 4 e 5.
+            </p>
+            <p>
+                Há relatos de que os egípcios utilizavam cordas com marcações regulares para obter ângulos retos em
+                construções e medições. Para isso, faziam treze nós igualmente espaçados em uma corda e fixavam as
+                extremidades nos nós de número 1 e 13. Em seguida, posicionavam o nó 5 em um ponto estratégico e
+                o nó 8 em outro, formando um triângulo com lados medindo 3, 4 e 5 unidades, caracterizando assim um
+                triângulo retângulo.
+            </p>
+            <br>
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-green">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 5</strong>.</span> Aplicação do Teorema de Pitágoras com contagem de unidades</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" style="max-width: 80%; width: 80%;"
+                        src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765560591/figura_5_yhbcmp.jpg" alt="">
+                </div>
+                <br>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem mostra um triângulo retângulo construído sobre um plano com pontos equidistantes destacados em roxo. Na
+                    parte superior, há uma linha horizontal composta por pontos igualmente espaçados, indicando a contagem de unidades de
+                    medida. A base e a altura
+                    do triângulo também apresentam pontos marcados, permitindo visualizar a contagem dos catetos e comparar com a
+                    hipotenusa. A figura oferece
+                    uma representação discreta do Teorema de Pitágoras, evidenciando que o número de unidades ao longo da hipotenusa é
+                    consistente com a relação
+                    entre os quadrados dos catetos.
+            </section>
+            <br>
+            <p>
+                Essa relação entre as medidas do triângulo retângulo tornou-se mundialmente conhecida pelo título de
+                Teorema de Pitágoras e, mesmo havendo diversas demonstrações envolvendo o teorema, não há registros
+                conhecidos sobre qual Pitágoras tenha utilizado para desenvolvê-lo (Boyer; Merzbach, 2012).
+            </p>
+        </section>
+        <section class="secao2">
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    EXERCÍCIOS COMENTADOS
+                </h1>
+            </div>
+            <br>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>1</strong>. Determine a medida da hipotenusa de um triângulo retângulo cujos catetos medem respectivamente
+                        \( 2m \) e \( 6m \).
+                    </p>
+            
+                </div>
+                <div class="resolucao">
+                    <p>
+                        <strong>Resolução:</strong> 
+                        Sabemos que, em um triângulo retângulo, a relação entre os lados é dada pelo Teorema de
+                        Pitágoras, que afirma:
+                    </p>
+                    <br>
+                    <p>
+                        $$ \large x^2 = a^2 + b^2 $$
+                    </p>
+                    <br>
+                    <p>
+                        Onde:
+                    </p>
+                    <ul class="lista-compacta">
+                        <li>\(x\) é a hipotenusa,</li>
+                        <li>\(a\) e \(b\) são os catetos.</li>
+                    </ul>
+                    <br>
+                    <p>
+                        No nosso caso, temos os catetos:
+                    </p>
+                    <ul class="lista-compacta">
+                        <li>\(a = 2m\)</li>
+                        <li>\(b = 6m\)</li>
+                    </ul>
+                    <br>
+                    <p>
+                        Substituindo os valores na fórmula:
+                    </p>
+                    <p>$$ x^2 = 2^2 + 6^2 $$</p>
+                    <p>$$ x^2 = 4 + 36 $$</p>
+                    <p>$$ x^2 = 40 $$</p>
+                    <br>
+                    <p>
+                        Agora extraímos a raiz quadrada:
+                    </p>
+                    <p>
+                        $$ x = \sqrt{40} \cong 6,32\,\text{m} $$
+                    </p><br>
+                    <p>
+                        Mesmo que um dos catetos seja pequeno e o outro grande, o Teorema de Pitágoras sempre se aplica
+                        da mesma forma. A raiz quadrada de 40 não é exata, por isso usamos uma aproximação decimal para
+                        expressar a medida da hipotenusa com mais clareza.
+                    </p>
+                    <br>
+                    <p>
+                        <b>Resposta final:</b>
+                        A medida da hipotenusa é, aproximadamente, 6,32 metros.
+                    </p>
+                </div>
+            </div>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>2.</strong> Um terreno em forma de triângulo tem um ângulo de 90°. Sabendo que o lado oposto ao ângulo reto
+                        mede 44 metros e outro lado mede 22 metros, calcule a medida do terceiro lado desse triângulo.
+                    </p>
+                </div>
+            
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong>
+                        Sabemos que, em um triângulo retângulo, o lado oposto ao ângulo de 90° é sempre a
+                        hipotenusa. Nesse exercício, ela já foi fornecida com valor de 44 metros.
+                    </p>
+                    <p>
+                        Outro lado, que mede 22 metros, é um dos catetos. Portanto, queremos descobrir o comprimento do outro
+                        cateto.
+                    </p>
+                    <p>
+                        Usamos novamente o Teorema de Pitágoras, mas agora isolando o cateto desconhecido:
+                    </p>
+                    <p>
+                        $$ 2^2 + 22^2 = 44^2 $$
+                    </p>
+                    <br>
+                    <p>
+                        Elevando ao quadrado os valores fornecidos:
+                    </p>
+                    <p>
+                        $$ x^2 + 484 = 1936 $$
+                    </p>
+                    <br>
+                    <p>
+                        Subtraindo 484 de ambos os lados da equação:
+                    </p>
+                    <p>
+                        $$ x^2 = 1936 - 484 $$
+                    </p>
+                    <p>
+                        $$ x^2 = 1452 $$
+                    </p>
+                    <br>
+                    <p>
+                        Extraindo a raiz quadrada de 1452:
+                    </p>
+                    <p>
+                        $$ x \approx \sqrt{1452} \cong 38,11\,\text{m} $$
+                    </p>
+                    <br>
+                    <p>
+                        Essa situação é típica em problemas com triângulos retângulos que envolvem terrenos, construções ou
+                        topografia. Identificar corretamente quem é a hipotenusa (maior lado, oposto ao ângulo reto) é essencial
+                        para aplicar corretamente a fórmula.
+                    </p>
+                    <br>
+                    <p>
+                        <b>Resposta final:</b>
+                        O terceiro lado do triângulo mede aproximadamente 38,11 metros.
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.2 O SENO DE UM ÂNGULO X –
+                    \( \color{#228B22}{sen(x)} \)
+                </h1>
+            </div>
+            <p>
+                O seno de um ângulo é uma razão trigonométrica fundamental utilizada na análise de triângulos
+                retângulos. Essa razão é definida como o quociente entre a medida do cateto oposto ao ângulo
+                considerado e a medida da hipotenusa do triângulo. Em outras palavras, para qualquer triângulo
+                retângulo, o seno de um ângulo agudo indica a proporção entre o lado que está diretamente oposto
+                a esse ângulo e o maior lado do triângulo, que é a hipotenusa. Essa relação é expressa de forma
+                matemática pela fórmula:
+            </p>
+            <p>
+                $$ sen(x) = \frac {cateto \ oposto}{hipotenusa} $$
+            </p>
+            <p>
+                A seguir, são apresentadas representações visuais que exemplificam essa razão para diferentes
+                ângulos em um triângulo retângulo.
+            </p>
+
+            <br>
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-green">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 6</strong>.</span> Relação trigonométrica no triângulo retângulo</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" style="max-width: 80%; width: 50%;"
+                        src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765562711/figura_6_mupf1t.jpg" alt="">
+                </div>
+                <br>
+                <p>
+                    $$ sen \widehat{B} =
+                    \frac{\mathrm{med}(\underline{AC})}{\mathrm{med}(\underline{BC})}
+                    = \frac{b}{a} $$
+                </p>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem apresenta um triângulo retângulo em destaque na cor roxa, com os vértices nomeados como A, B e C. O ângulo
+                    reto está localizado no vértice A, enquanto o ângulo agudo destacado é o ângulo no vértice B. As medidas dos lados do
+                    triângulo estão identificadas
+                    pelas letras minúsculas: a medida do lado oposto ao ângulo B (segmento AC) é indicada como “b”, a medida do lado
+                    adjacente (segmento BC) como
+                    “a”, e o outro cateto (segmento AB) como “c”. Abaixo da figura, há a representação da razão trigonométrica seno do
+                    ângulo B, que corresponde à
+                    razão entre a medida do cateto oposto (b) e a medida da hipotenusa (a).
+            </section>
+            <br>
+            
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-green">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 7</strong>.</span> Seno de um ângulo agudo em triângulo retângulo</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" style="max-width: 80%; width: 50%;"
+                        src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765562933/figura_7_hol6bp.jpg" alt="">
+                </div>
+                <br>
+                <p>
+                    $$ sen \widehat{C} =
+                    \frac{\mathrm{med}(\underline{AC})}{\mathrm{med}(\underline{BC})}
+                    = \frac{c}{a} $$
+                </p>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem apresenta um triângulo retângulo com coloração roxa e vértices nomeados como A, B e C. O ângulo reto está
+                    localizado no vértice A, e o ângulo agudo destacado é o ângulo no vértice C.As medidas dos lados do triângulo são
+                    identificadas pelas letras minúsculas: a do cateto oposto ao ângulo C (segmento AB) é indicada como “c”, a do cateto adjacente (segmento AC) como
+                    “b”, e a da hipotenusa (segmento BC) como “a”. Abaixo da figura, está representada a relação trigonométrica do seno do ângulo C, expressa como
+                    a razão entre a medida do cateto oposto (c) e a medida da hipotenusa (a).
+            </section>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    EXERCÍCIOS COMENTADOS
+                </h1>
+            </div>
+            <br>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>1</strong>. Um triângulo retângulo tem lados medindo
+                        \( 12m \), \( 16m \) e \( 20m \). Determine o seno do menor ângulo desse
+                        triângulo.
+                    </p>
+            
+                </div>
+                <div class="resolucao">
+                    <p>
+                        <strong>Resolução:</strong>
+                        Sabemos que se trata de um triângulo retângulo, portanto o lado de maior medida (20 m ) é a
+                        hipotenusa.
+                    </p>
+                    <p>
+                        Os outros dois lados \( (12m \ e \ 16m) \) são os catetos. O menor ângulo sempre está oposto ao menor dos catetos,
+                        ou seja, no nosso caso, \( 12 \ m \) está oposto ao menor ângulo.
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765563427/figura_ex1_srikrr.jpg"
+                            alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Para encontrar o seno de um ângulo em um triângulo retângulo, usamos a definição:
+                    </p>
+                    <p>
+                        $$ sen(a) = \frac{cateto \ oposto}{hipotenusa} $$
+                    </p>
+                    <p>
+                        Aplicando os valores:
+                    </p>
+                    <p>
+                        \( \large sen (a) = \frac {12}{20} = 0,6\).
+                    </p>
+                    <p>
+                        A relação trigonométrica do seno é muito útil para encontrar ângulos quando conhecemos os lados. Aqui não
+                        foi necessário usar tabela ou calculadora porque a questão só pediu o valor do seno, não o ângulo em graus.
+                    </p>
+                    <br>
+                    <p>
+                        <b>Resposta final:</b>
+                        O seno do menor ângulo desse triângulo é 0,6.
+                    </p>
+                </div>
+            </div>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>2.</strong> Os catetos de um triângulo retângulo medem
+                        \( 5 \ cm \) e \( 7 \ cm\). Determine o seno do menor ângulo desse
+                        triângulo.
+                    </p>
+                </div>
+            
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong>
+                        Primeiramente, identificamos que o triângulo é retângulo, ou seja, a hipotenusa é o lado oposto
+                        ao ângulo de 90°.
+                    </p>
+                    <p>
+                        Como temos os dois catetos \( (5 \ cm \ e \ 7 \ cm) \), podemos calcular a hipotenusa utilizando o Teorema de
+                        Pitágoras:
+                    </p>
+                    <p>
+                        $$ x^2 = 5^2 + 7^2 = 25 + 49 = 74 $$
+                    </p>
+                    <p>
+                        $$ x = \sqrt{74} \approx  8,60 \ cm $$
+                    </p>
+                    <p>
+                        Sabemos que o menor ângulo está sempre oposto ao menor cateto, que neste caso é o lado de \( 5 \ cm \).
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765651363/exerc%C3%ADcio02_rlf5yv.jpg"
+                            alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Para encontrar o seno desse ângulo, usamos:
+                    </p>
+                    <div class="math-wrapper">
+                    <p>
+                        $$ sen(a) = \frac {cateto \ oposto}{hipotenusa} = \frac {5}{8,60} \approx 0,5814 $$
+                    </p>
+                    </div>
+                    <p>
+                        Mesmo sem calcular o valor do ângulo em graus, já conseguimos identificar a razão trigonométrica com
+                        base na medida dos lados. O valor do seno nos mostra a proporção entre a medida do lado oposto e a da
+                        hipotenusa.
+                    </p>
+                    <br>
+                    <p>
+                        <b>Resposta final:</b>
+                        O seno do menor ângulo desse triângulo é aproximadamente 0,5814.
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.3 O COSSENO DE UM ÂNGULO X –
+                    \( \color{#228B22}{cos(x)} \)
+                </h1>
+            </div>
+            <p>
+                O cosseno de um ângulo é outra razão trigonométrica fundamental, especialmente aplicada na análise
+                de triângulos retângulos. Ele é definido como a razão entre a medida do cateto adjacente ao ângulo
+                considerado e a medida da hipotenusa desse triângulo. Em termos práticos, o cosseno indica o quanto o
+                lado mais próximo ao ângulo contribui proporcionalmente em relação ao comprimento total da hipotenusa.
+                Essa relação é expressa pela fórmula:
+            </p>
+            <p>
+                $$ cos(x) = \frac {cateto \ adjacente}{hipotenusa} $$
+            </p>
+            <p>
+                Nos exemplos a seguir, são apresentadas representações visuais dessa razão aplicada a diferentes ângulos
+                agudos em um mesmo triângulo retângulo, evidenciando a mudança do cateto adjacente conforme o
+                ângulo observado.
+            </p>
+
+            <br>
+            
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-verde">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 8</strong>.</span> Cosseno de um ângulo agudo em triângulo retângulo</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" style="max-width: 80%; width: 50%;"
+                        src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765564483/figura_8_t2izvq.jpg" alt="">
+                </div>
+                <br>
+                <p>
+                    $$ cos \widehat{B} =
+                    \frac{\mathrm{med}(\underline{AB})}{\mathrm{med}(\underline{BC})}
+                    = \frac{c}{a} $$
+                </p>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem exibe um triângulo retângulo com coloração roxa, identificado pelos
+                    vértices A, B e C. O ângulo reto está localizado no vértice A, e o ângulo agudo destacado é o ângulo no
+                    vértice B. Os lados estão nomeados como “c” para o cateto adjacente ao ângulo B (segmento AB), “b” para
+                    o cateto oposto (segmento AC) e “a” para a hipotenusa (segmento BC). A fórmula exibida sob a figura indica
+                    a relação trigonométrica do cosseno do ângulo B, dada pela razão entre a medida do cateto adjacente (c) e
+                    a medida da hipotenusa (a).
+            </section>
+            <br>
+            
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-verde">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 9</strong>.</span> Cosseno de um ângulo agudo complementar em triângulo retângulo</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" style="max-width: 80%; width: 50%;"
+                        src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765564544/figura_9_tob92i.jpg" alt="">
+                </div>
+                <br>
+                <p>
+                    $$ cos \widehat{C} =
+                    \frac{\mathrm{med}(\underline{AC})}{\mathrm{med}(\underline{BC})}
+                    = \frac{b}{a} $$
+                </p>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A figura mostra um triângulo retângulo com os vértices A, B e C, em que o ângulo
+                    reto está localizado no vértice A. O ângulo destacado é o ângulo agudo no vértice C. Os lados do triângulo
+                    estão identificados da seguinte forma: “b” representa o cateto adjacente ao ângulo C (segmento AC),
+                    “c” é o cateto oposto ao mesmo ângulo (segmento AB) e “a” é a hipotenusa (segmento BC). A equação
+                    apresentada abaixo da figura expressa a relação trigonométrica do cosseno do ângulo C, que é definida
+                    pela razão entre o cateto adjacente (b) e a hipotenusa (a).
+            </section>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    EXERCÍCIO COMENTADO
+                </h1>
+            </div>
+
+            <br>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>1</strong>. Um triângulo retângulo tem lados medindo
+                        \( 18 \ m \), \( 24 \ m \) e \( 30 \ m \). Determine o cosseno do maior ângulo não
+                        reto desse triângulo.
+                    </p>
+            
+                </div>
+                <div class="resolucao">
+                    <p>
+                        <strong>Resolução:</strong>
+                        Sabemos que em um triângulo retângulo, o maior lado é sempre a hipotenusa, pois está
+                        oposto ao ângulo de 90°. Neste caso, o lado de \( 30 \ m \) é a hipotenusa.
+                    </p>
+                    <p>
+                        Os outros dois lados \( (18 \ m \ e \ 24 \ m) \) são os catetos. Para descobrir o maior ângulo agudo (isto é, o maior
+                        ângulo menor do que 90°), devemos localizar aquele que está oposto ao maior dos catetos, ou seja, o lado
+                        de \( 24 \ m \). O cateto de \( 18 \ m \) será, então, o lado adjacente a esse ângulo.
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" style="max-width: 80%; width: 35%;" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765568374/figura_ex2_d4dvqc.jpg"
+                            alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Sabendo disso, usamos a definição de cosseno:
+                    </p>
+                    <div class="math-wrapper">
+                    <p>
+                        $$ cos(a) = \frac{cateto \ adjacente}{hipotenusa} = \frac {18}{30} = 0,6 $$
+                    </p>
+                    </div>
+                    <p>
+                        O cosseno de um ângulo agudo em um triângulo retângulo sempre será um número entre 0 e 1. Neste
+                        caso, o valor de 0,6 representa a razão entre o lado colado ao ângulo e a hipotenusa.
+                    </p>
+                    <br>
+                    <p>
+                        <b>Resposta final:</b>
+                        O cosseno do maior ângulo não reto desse triângulo é 0,6.
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.4 A TANGENTE DE UM ÂNGULO X –
+                    \( \color{#228B22}{tg(x)} \)
+                </h1>
+            </div>
+            <p>
+                A tangente de um ângulo agudo em um triângulo retângulo é uma razão trigonométrica que expressa a
+                relação entre dois de seus lados: o cateto oposto e o cateto adjacente ao ângulo considerado. Essa razão
+                permite determinar, por exemplo, a inclinação de rampas, encostas ou segmentos inclinados em diversas
+                aplicações práticas. A tangente é dada pela fórmula:
+            </p>
+            <p>
+                $$ tg(x) = \frac{cateto \ oposto}{cateto \ adjacente} $$
+            </p>
+            <p>
+                Nos exemplos a seguir, essa relação é representada graficamente para diferentes ângulos, evidenciando
+                como a razão entre os catetos se modifica conforme o ângulo observado no triângulo. Trata-se de uma
+                função essencial no estudo da geometria e da trigonometria, especialmente em contextos que envolvem
+                medidas indiretas.
+            </p>
+            <br>
+            
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-verde">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 10</strong>.</span> Tangente de um ângulo agudo em triângulo retângulo</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" style="max-width: 80%; width: 50%;"
+                        src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765568946/figura_10_fmopag.jpg" alt="">
+                </div>
+                <br>
+                <p>
+                    $$ tg \widehat{B} =
+                    \frac{\mathrm{med}(\underline{AC})}{\mathrm{med}(\underline{AB})}
+                    = \frac{b}{c} $$
+                </p>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A figura apresenta um triângulo retângulo com vértices A, B e C, em que o ângulo reto está no vértice A. O ângulo
+                    destacado é o ângulo agudo localizado no vértice B. Os lados do triângulo estão identificados como: “b” (segmento AC),
+                    que é o cateto oposto ao
+                    ângulo B; “c” (segmento AB), que é o cateto adjacente ao ângulo B; e “a” (segmento BC), que representa a hipotenusa. A
+                    expressão abaixo da
+                    f
+                    igura representa a tangente do ângulo B, definida como a razão entre o cateto oposto (b) e o cateto adjacente (c).
+            </section>
+            <br>
+            
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-verde">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 11</strong>.</span> Tangente de um ângulo agudo em triângulo retângulo</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" style="max-width: 80%; width: 50%;"
+                        src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765569209/figura_12_v7q6pv.jpg" alt="">
+                </div>
+                <br>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A figura mostra um triângulo retângulo com vértices A, B e C, onde o ângulo reto está no vértice A. O ângulo destacado
+                    é o ângulo agudo localizado no vértice C. Os lados do triângulo estão indicados como: “c” (segmento AB), que é o cateto
+                    oposto ao ângulo C; “b”
+                    (segmento AC), que é o cateto adjacente ao ângulo C; e “a” (segmento BC), que é a hipotenusa. A expressão escrita abaixo
+                    da figura representa
+                    a tangente do ângulo C, sendo definida como a razão entre o cateto oposto (c) e o cateto adjacente (b).
+            </section>
+            <br>
+
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    EXERCÍCIO COMENTADO
+                </h1>
+            </div>
+
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>1</strong>. Um triângulo retângulo tem catetos medindo
+                        \( 19 \ cm \) e \( 28 \ cm \). Determine a tangente do menor ângulo
+                        desse triângulo.
+                    </p>
+            
+                </div>
+                <div class="resolucao">
+                    <p>
+                        <strong>Resolução:</strong>
+                        Para identificar o menor ângulo agudo de um triângulo retângulo, basta observar qual dos
+                        catetos tem menor comprimento. Nesse caso, o lado de \( 19 \ cm \) é menor que o de \( 28 \ cm \), portanto, ele está
+                        oposto ao menor ângulo.
+                    </p>
+                    
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" style="max-width: 80%; width: 35%;"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765569957/exercicio1comentado_yowceo.jpg" alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Lembre-se que a tangente de um ângulo agudo em um triângulo retângulo é definida como a razão entre o
+                        cateto oposto e o cateto adjacente ao ângulo:
+                    </p>
+                    <div class="math-wrapper">
+                    <p>
+                        $$ tan(a) = \frac{cateto \ oposto}{cateto \ adjacente} = \frac {19}{28} \approx 0,6786 $$
+                    </p>
+                    </div>
+                    <p>
+                        Como esperado para um ângulo agudo menor que 45°, o valor da tangente é menor que 1, indicando que
+                        o cateto oposto é mais curto que o cateto adjacente.
+                    </p>
+                    
+                    <p>
+                        <b>Resposta final:</b>
+                        A tangente do menor ângulo do triângulo é aproximadamente 0,6786.
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.5 ALGUMAS RELAÇÕES TRIGONOMÉTRICAS
+                </h1>
+            </div>
+            <p>
+                Além das definições básicas de seno, cosseno e tangente, existem <b>relações trigonométricas fundamentais</b>
+                que estabelecem conexões entre essas razões. Essas relações são especialmente úteis na resolução de
+                problemas envolvendo ângulos e lados de triângulos retângulos, bem como na simplificação de expressões
+                e equações trigonométricas. Entre as mais importantes, destacam-se:
+            </p>
+            <ul class="lista-compacta">
+                <li> A tangente de um ângulo como a razão entre o seno e o cosseno;</li>
+                <li> A cotangente como o inverso da tangente;</li>
+                <li> 
+                    A identidade fundamental da trigonometria, que afirma que o quadrado do seno somado ao
+                    quadrado do cosseno de um mesmo ângulo é sempre igual a 1.
+                </li>
+            </ul>
+            <p>
+                Essas expressões constituem a base para diversas aplicações em geometria, física e outras áreas do
+                conhecimento. Veja alguns exemplos a seguir:
+            </p>
+            <br>
+            <p style="text-align:center;">
+                <span
+                    style="line-height: 2.5em; font-size:1.1rem; display:inline-block; padding:10px 30px; border:2px solid #015A42; border-radius:10px; background-color: #FFF; max-width: 800px; width: 80%;">
+                    $$ tg \ x = \frac {sen \ x}{cos \ x} $$
+                    $$ cotg \ x = \frac {1}{(tg \ x)} = \frac {(cos \ x)}{(sen \ x)} $$
+                    $$ sen^2x + cos^2x = 1 $$
+                </span>
+            </p>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.6 VALORES NOTÁVEIS
+                </h1>
+            </div>
+            <p>
+                Alguns ângulos possuem razões trigonométricas cujos valores são amplamente conhecidos e utilizados
+                em diversos contextos matemáticos. Esses ângulos, chamados de <b>valores notáveis</b>, são <b>0°</b>, <b>30°</b>, <b>45°</b>,
+                <b>60°</b> e <b>90°</b>, e suas razões de seno, cosseno e tangente podem ser determinadas sem o uso de calculadora.
+            </p>
+            <p>
+                A memorização desses valores facilita a resolução de problemas trigonométricos, sobretudo em questões
+                envolvendo triângulos retângulos e funções periódicas. A tabela a seguir apresenta os valores exatos de
+                seno, cosseno e tangente para cada um desses ângulos, organizados de forma prática e acessível. Esses
+                dados constituem uma referência essencial para estudantes e profissionais da área, permitindo maior
+                agilidade em cálculos e interpretações geométricas.
+            </p>
+            <br>
+            <!-- Título fora do container -->
+            <h3 class="titulo-figura-central"><span class="figura"><strong>Tabela 1</strong>.</span> Valores notáveis das funções trigonométricas</h3>
+            
+            <!-- Bloco de Figura (sem borda e fundo) -->
+            <section class="bloco-figura-simples tema-verde" style="border: none;">
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765571412/tabela_1_blndpt.png"
+                        alt="">
+                </div>
+                <br>
+                <!-- Fonte abaixo da imagem -->
+                <p class="fonte-imagem">
+                    <strong><i>Fonte</strong>: Elaborada pela autora.</i>
+                </p>
+            
+                <!-- Descrição com largura maior -->
+                <p class="descricao-figura-larga">
+                    <strong>Descrição da tabela:</strong>
+                    A Tabela 1 apresenta os valores notáveis das funções trigonométricas seno, cosseno e tangente para os ângulos de 0°,
+                    30°,
+                    45°, 60° e 90°. Ela possui quatro linhas e seis colunas. A primeira linha contém os títulos dos ângulos em graus, sendo
+                    a primeira célula vazia e as
+                    demais preenchidas com os valores 0°, 30°, 45°, 60° e 90°. A primeira coluna contém os nomes das funções: “Seno” na
+                    segunda linha, “Cosseno”
+                    na terceira e “Tangente” na quarta. Na linha do seno, os valores correspondentes aos ângulos são: zero para 0°, um meio
+                    para 30°, raiz quadrada de
+                    dois sobre dois para 45°, raiz quadrada de três sobre dois para 60° e um para 90°. Na linha do cosseno, os valores são:
+                    um para 0°, raiz quadrada
+                    de três sobre dois para 30°, raiz quadrada de dois sobre dois para 45°, um meio para 60° e zero para 90°. Na linha da
+                    tangente, os valores são:
+                    zero para 0°, raiz quadrada de três sobre três para 30°, um para 45°, raiz quadrada de três para 60° e não definido para
+                    90°, sendo este último
+                    representado por um símbolo de não existe. Toda a tabela tem fundo em tons de verde claro, com os cabeçalhos dos ângulos
+                    em verde mais escuro
+                    e as expressões matemáticas centralizadas em cada célula, apresentadas com frações ou radicais conforme o caso.
+                </p>
+            </section>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    EXERCÍCIO COMENTADO
+                </h1>
+            </div>
+            
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>1</strong>. Um prédio projeta uma sombra de aproximadamente \({23,1}m\) enquanto os raios solares projetados sobre
+                        esse prédio formam um ângulo de 60° com o solo. Qual é a altura do prédio?
+                        
+                    </p>
+            
+                </div>
+                <div class="resolucao">
+                    <p>
+                        <strong>Resolução:</strong>
+                        Esse é um clássico exemplo de aplicação da trigonometria no triângulo retângulo, em que
+                        o prédio corresponde ao cateto oposto ao ângulo de 60° e a sombra projetada representa o cateto
+                        adjacente.
+                    </p>
+            
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" style="max-width: 80%; width: 35%;"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765571661/figura_ex3_ol0jwu.jpg"
+                            alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Para resolver, utilizamos a tangente do ângulo de 60°, que é dada por:
+                    </p>
+                    <p>
+                        $$ tan(60°) = \frac{cateto \ oposto}{cateto \ adjacente} = \frac {x}{23,1} $$
+                    </p>
+                    <br>
+                    <p>
+                        Sabemos que:
+                    </p>
+                    <p>
+                        $$ tan(60°) = \sqrt {3} \approx 1,732 $$
+                    </p>
+                    <br>
+                    <p>
+                        Substituindo:
+                    </p>
+                    <p>$$ \sqrt {3} = \frac{x}{23,1} $$</p>
+                    <p>
+                        $$ x = 23,1 \cdot \sqrt {3} $$
+                    </p>
+                    <p>
+                        $$ x \approx 23,1 \cdot 1,732 \approx 40,01m $$
+                    </p>
+                    <p>
+                        A altura do prédio é o valor correspondente ao cateto oposto ao ângulo de 60°, e foi encontrada
+                        multiplicando a tangente de 60° pela medida da sombra. Esse tipo de aplicação é comum em problemas
+                        de campo ou arquitetura, e depende da correta interpretação das relações trigonométricas.
+                    </p>
+                    <br>
+                    <p>
+                        <b>Resposta final:</b>
+                        A altura do prédio é de aproximadamente 40,01 metros.
+                    </p>
+                </div>
+            </div>
+
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>2</strong>. Duas ruas formam um entroncamento com uma terceira conforme o esquema a seguir.
+            
+                    </p>
+            
+                </div>
+                <div class="resolucao">
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" style="max-width: 80%; width: 35%;"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765572013/figura_ex4_cqy6gn.jpg" alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Determine a extensão correspondente ao segmento \(x\) indicado na figura.
+                    </p>
+                    <p>
+                        <strong>Resolução:</strong>
+                        Neste problema, temos novamente um triângulo retângulo, em que o lado de 12 metros é o
+                        cateto oposto ao ângulo de \(54°\), e o segmento \(x\) que desejamos descobrir é a hipotenusa do triângulo.
+                    </p>
+                    <br>
+                    <p>
+                        Nesse caso, aplicamos a função seno, pois ela relaciona justamente o cateto oposto com a hipotenusa:
+                    </p>
+                    <p>
+                        $$ sen(54°) = \frac{cateto \ oposto}{hipotenusa} = \frac {12}{x} $$
+                    </p>
+                    <br>
+                    <p>
+                        Reorganizando a equação para isolar \( \Large x\):
+                    </p>
+                    <p>
+                        $$ x = \frac {12}{sen(54°)} \approx \frac {12}{0,809} \approx 14,83m $$
+                    </p>
+                    <br>
+                    <p>
+                        Quando utilizamos o seno, estamos tratando de situações em que conhecemos o cateto oposto e queremos
+                        encontrar a hipotenusa. Esse tipo de raciocínio aparece com frequência em situações práticas, como
+                        levantamento de terrenos ou desenho de ruas em planta urbana.
+                    </p>
+                    
+                    <p>
+                        <b>Resposta final:</b>
+                        A extensão do segmento \( \Large x\) é de aproximadamente 14,83 metros.
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.7 CURIOSIDADES
+                </h1>
+            </div>
+            <p>
+                Uma propriedade interessante das razões trigonométricas em triângulos retângulos é a relação entre o
+                seno de um ângulo agudo e o cosseno de seu ângulo complementar. Dois ângulos são complementares
+                quando sua soma é igual a 90°. Em um triângulo retângulo, como um dos ângulos já é de 90°, os outros
+                dois ângulos são necessariamente agudos e complementares entre si. Isso significa que, se um dos
+                ângulos mede \(x\) , o outro mede \( 90° - x\).
+            </p>
+            <p>
+                A figura a seguir ilustra essa relação utilizando a nomenclatura dos lados e ângulos de um triângulo
+                retângulo:
+            </p>
+
+            <br>
+            
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-verde">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 12</strong>.</span> Relações trigonométricas em um triângulo retângulo</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" style="max-width: 80%; width: 50%;"
+                        src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765569209/figura_12_v7q6pv.jpg" alt="">
+                </div>
+                <br>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+                <div class="math-wrapper">
+                <p>
+                        $$
+                        sen \widehat{B} =
+                        \frac{\mathrm{med}(\overline{AC})}{\mathrm{med}(\overline{BC})}
+                        = \frac{b}{a} \qquad \qquad \cos \widehat{C} =
+                        \frac{\mathrm{med}(\overline{AC})}{\mathrm{med}(\overline{BC})}
+                        = \frac{b}{a}
+                        $$
+                    </p>
+                    <p>
+                        $$
+                        sen \widehat{C} =
+                        \frac{\mathrm{med}(\overline{AB})}{\mathrm{med}(\overline{BC})}
+                        = \frac{c}{a} \qquad \qquad \cos \widehat{B} =
+                        \frac{\mathrm{med}(\overline{AB})}{\mathrm{med}(\overline{BC})}
+                        = \frac{c}{a}
+                        $$
+                    </p>
+                </div>
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem apresenta um triângulo retângulo com o ângulo de noventa graus localizado no vértice A. O lado oposto a esse
+                    ângulo, que é o lado de maior comprimento, recebe o nome de hipotenusa e está representado pelo segmento que liga os
+                    pontos B e C. Os demais
+                    lados, chamados de catetos, ligam os vértices A e B, e A e C. Abaixo do triângulo, são indicadas quatro relações
+                    trigonométricas que envolvem os
+                    ângulos agudos do triângulo. A primeira relação afirma que o seno do ângulo localizado no vértice B é igual à razão
+                    entre o comprimento do cateto
+                    oposto a esse ângulo, que é o lado que liga os pontos A e C, e o comprimento da hipotenusa, que é o lado que liga os
+                    pontos B e C. A segunda
+                    relação diz que o seno do ângulo localizado no vértice C é igual à razão entre o comprimento do cateto oposto a esse
+                    ângulo, que é o lado que liga
+                    os pontos A e B, e o comprimento da hipotenusa, que é o lado que liga os pontos B e C. A terceira relação apresenta o
+                    cosseno do ângulo no vértice
+                    C como a razão entre o comprimento do cateto adjacente a esse ângulo, que é o lado que liga os pontos A e C, e o
+                    comprimento da hipotenusa, que
+                    é o lado que liga os pontos B e C. Por fim, a quarta relação afirma que o cosseno do ângulo no vértice B corresponde à
+                    razão entre o comprimento
+                    do cateto adjacente a esse ângulo, que é o lado que liga os pontos A e B, e o comprimento da hipotenusa, que é o lado
+                    que liga os pontos B e C.
+            </section>
+            <br>
+            <p style="text-align:center;">
+                <span
+                    style="line-height: 1.5em; font-size:1rem; display:inline-block; padding:30px 30px; border:2px solid #015A42; border-radius:10px; background-color: #FFF; max-width: 800px; width: 80%;">
+                    O seno de um ângulo é a razão entre o cateto oposto a esse ângulo e a hipotenusa.<br><br>
+                    O cosseno do ângulo complementar é a razão entre o cateto adjacente ao ângulo original (que é o mesmo
+                    cateto oposto ao ângulo complementar) e a hipotenusa.
+                </span>
+            </p>
+            <br>
+            <p>
+                Assim, para os ângulos agudos de um mesmo triângulo retângulo, a medida do seno de um ângulo é igual
+                à medida do cosseno de seu ângulo complementar, e vice-versa. Essa correspondência é provavelmente
+                a origem etimológica do termo “cosseno”, como sendo o “complementar do seno”. Veja alguns exemplos
+                práticos dessa relação:
+            </p>
+
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>(A)</strong>
+                    </p>
+                    <p>$$ sen(30°) = \frac {1}{2} ; \ cos(60°) = \frac {1}{2} $$</p>
+                    <p>
+                        Como 30° e 60° são complementares (30° + 60° = 90°), os valores são iguais.
+                    </p>
+                    <br>
+                    <p>
+                        <strong>(B)</strong>
+                    </p>
+                    <p>
+                        $$ sen(45°) = \frac {\sqrt {2}}{2} ; \ cos(45°) = \frac {\sqrt {2}}{2} $$
+                    </p>
+                    <p>
+                        Neste caso, o próprio ângulo é complementar a si mesmo (45° + 45° = 90°),
+                        o que justifica os valores idênticos.
+                    </p>
+                    <br>
+                    <p>
+                        <strong>(C)</strong>
+                    </p>
+                    <div class="math-wrapper">
+                    <p>
+                        $$ sen(72°) \approx 0,951057 ; \ cos(18°) \approx 0,951057 $$
+                    </p>
+                    </div>
+                    <br>
+                    <p>
+                        Mais uma vez, temos que 72° e 18° são complementares (72° + 18° = 90°), o que confirma a simetria
+                        entre seno e cosseno em ângulos complementares.
+                    </p>
+                </div>
+            </div>
+            <br>
+            <p>
+                Essa característica é amplamente explorada na resolução de problemas trigonométricos e reforça a
+                importância de compreender a interdependência entre os ângulos de um triângulo retângulo.
+            </p>
+            <p>
+                Além da relação entre seno e cosseno de ângulos complementares, existe também uma propriedade
+                importante envolvendo a tangente. Em um triângulo retângulo, a tangente de um ângulo agudo é igual
+                ao inverso da tangente de seu ângulo complementar. Isso ocorre porque a tangente é definida como a
+                razão entre o cateto oposto e o cateto adjacente a um determinado ângulo, e, ao considerar o ângulo
+                complementar, esses dois catetos trocam de papel.
+            </p>
+            <br>
+            
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-verde">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 13</strong>.</span> Tangentes dos ângulos agudos em um triângulo retângulo</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" style="max-width: 80%; width: 50%;"
+                        src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765569209/figura_12_v7q6pv.jpg" alt="">
+                </div>
+                <br>
+                <div class="math-wrapper">
+                <p>
+                    $$
+                    tg \widehat{B} =
+                    \frac{\mathrm{med}(\overline{AC})}{\mathrm{med}(\overline{AB})}
+                    = \frac{b}{c} \qquad \qquad tg \ \widehat{C} =
+                    \frac{\mathrm{med}(\overline{AB})}{\mathrm{med}(\overline{AC})}
+                    = \frac{c}{b}
+                    $$
+                </p>
+                </div>
+                <br>
+                <!-- Fonte -->
+                <p class="fonte-imagem" style="text-align: left;"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem apresenta um triângulo retângulo com ângulo de noventa graus localizado no vértice A. O lado oposto a esse
+                    ângulo, que é o de maior comprimento, é a hipotenusa e liga os pontos B e C. Os catetos ligam os pontos A e B, e A e C.
+                    Abaixo do triângulo,
+                    são mostradas duas relações trigonométricas que correspondem às tangentes dos ângulos agudos. A primeira afirma que a
+                    tangente do ângulo
+                    localizado no vértice B é igual à razão entre o comprimento do cateto oposto a esse ângulo, que é o lado entre os pontos
+                    A e C, e o comprimento
+                    do cateto adjacente a esse ângulo, que é o lado entre os pontos A e B. A segunda relação afirma que a tangente do ângulo
+                    localizado no vértice C é
+                    igual à razão entre o comprimento do cateto oposto a esse ângulo, que é o lado entre os pontos A e B, e o comprimento do
+                    cateto adjacente a esse
+                    ângulo, que é o lado entre os pontos A e C.
+            </section>
+            <br>
+            <p>
+                Na figura, temos dois ângulos agudos complementares: os ângulos B e C. As expressões abaixo demonstram
+                a definição da tangente para cada um deles:
+            </p>
+            <div class="math-wrapper">
+            <p>
+                $$ tg \widehat{B} =
+                \frac{\mathrm{med}(\underline{AC})}{\mathrm{med}(\underline{AB})}
+                = \frac{b}{c}  \qquad e \qquad tg \ \widehat{C} =
+                \frac{\mathrm{med}(\underline{AB})}{\mathrm{med}(\underline{AC})}
+                = \frac{c}{b} $$
+            </p>
+            </div>
+            <p>
+                Perceba que a tangente de \(\widehat{C}\) é o inverso da tangente de
+                \(\widehat{B}\), já que:
+            </p>
+            <p>
+                $$ \frac{c}{b} = \frac{1}{\frac{b}{c}} $$
+            </p>
+            <p>
+                Vamos verificar esse conceito com valores numéricos:
+            </p>
+            <br>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>Exemplo:</strong>
+                    </p>
+                    <div class="math-wrapper">
+                    <p>$$ tg(30°) = \frac {\sqrt3} {3}; \qquad tg(60°) = \frac{1}{\frac{\sqrt 3}{3}} = \frac {3} {\sqrt3}$$</p>
+                    </div>
+                    <p>
+                        Racionalizando o denominador:
+                    </p>
+                    <p>
+                        $$ \frac {3} {\sqrt3} \cdot \frac {\sqrt3} {\sqrt3} = \frac {3 \sqrt3} {3} = \sqrt3 $$ 
+                    </p>
+                    <p>
+                        Ou seja:
+                    </p>
+                    <p>
+                        $$ tg(30°) = \frac {\sqrt3}{3} \qquad e \qquad tg(60°) = {\sqrt3} $$ 
+                    </p>
+                </div>
+            </div>
+            <br>
+            <p>
+                Como e são complementares (30° + 60° = 30°), temos mais uma vez confirmada a simetria entre
+                razões trigonométricas de ângulos complementares, agora, por meio da relação de reciprocidade da
+                tangente. Essa propriedade também é útil na resolução de problemas e no reconhecimento de padrões
+                em contextos geométricos e trigonométricos.
+            </p>
+        </section>
+        <section class="secao1" id="secao2">
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    2. TRIGONOMETRIA EM TRIÂNGULOS QUAISQUER
+                </h1>
+            </div>
+            <p>
+                Para iniciar o estudo da lei dos senos e da lei dos cossenos vamos demonstrá-las utilizando conceitos
+                estudados anteriormente. Deslize pelas setas para ver:
+            </p>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    2.1 LEI DOS SENOS
+                </h1>
+            </div>
+
+            <br>
+            <section class="slider-texto-container tema-green" data-slider-id="1">
+                <!-- conteúdo do slider 2 -->
+                <div class="slider-texto-wrapper">
+                    <div class="slide-texto ativo">
+                        <br>
+                        <!-- Imagem do exercício -->
+                        <div class="figura-container-reduzida">
+                            <img class="zoomable fundo-transparente" style="max-width: 80%; width: 35%;"
+                                src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765575302/figura_slider1_qdzfam.jpg" alt="">
+                        </div>
+                        <br>
+                        <p class="conteudo-texto">
+                            Considere um triângulo ABC qualquer inscrito em uma circunferência.
+                        </p>
+                    </div>
+                    <div class="slide-texto">
+                        <br>
+                        <!-- Imagem do exercício -->
+                        <div class="figura-container-reduzida">
+                            <img class="zoomable fundo-transparente" style="max-width: 80%; width: 35%;"
+                                src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765575302/figura_slider2_vbej5e.jpg" alt="">
+                        </div>
+                        <br>
+                        <p class="conteudo-texto">
+                            Se traçarmos o diâmetro , podemos obter o triângulo retângulo CBD e
+                            analisar algumas razões.
+                        </p>
+                    </div>
+                </div>
+                <button class="seta-texto esquerda" onclick="mudarSlideTexto(this, -1)">&#10094;</button>
+                <button class="seta-texto direita" onclick="mudarSlideTexto(this, 1)">&#10095;</button>
+                <div class="slider-texto-indicadores">
+                </div>
+            </section>
+            <br>
+            <p>
+                O triângulo BCD é retângulo, logo podemos obter a medida do seno do ângulo D através da razão entre o
+                cateto oposto a D \((\underline{BC})\) e a hipotenusa \((\underline{CD})\). 
+                Como \(\widehat{A}\) e \(\widehat{D}\) são ângulos inscritos e determinam a mesma corda
+                \(\underline{BC}\) na circunferência então têm a mesma medida. Assim temos,
+            </p>
+            <br>
+            <p style="text-align:center;">
+                <span
+                    style="line-height: 1.5em; font-size:1rem; display:inline-block; padding:30px 30px; border:2px solid #9F43BE; border-radius:10px; background-color: #FFF; max-width: 800px; width: 80%;">
+                    $$ sen \ \widehat{A} = sen \ \widehat{D} = \frac{\underline{BC}}{\underline{CD}} = \frac {a}{2R} $$
+                    <br>
+                    Isolando o valor de \(2R\), obtemos:
+                    <br><br>
+                    $$ 2R = \frac {a}{sen \widehat{A}} $$
+                </span>
+            </p>
+            <br>
+            <p>
+                Utilizando o mesmo raciocínio, temos:
+            </p>
+            <br>
+            <div class="quadro-problema" style="border: 2px solid #9F43BE;">
+                <div class="topo">
+                    <p>
+                        Observe que as três razões geram a constante \(2R\), logo podemos escrever:
+                    </p>
+                    <p>
+                        $$ \frac {a}{sen \widehat{A}} = \frac {b}{sen \widehat{B}} = \frac {c}{sen \widehat{C}} = 2R$$
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" style="max-width: 80%; width: 70%;"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765576011/expaint_irt245.png" alt="">
+                    </div>
+                    
+                    <p>
+                        $$ 2R = \frac {b}{sen \widehat{B}}  \qquad \qquad \qquad 2R = \frac {c}{sen \widehat{C}} $$
+                    </p>
+                </div>
+            </div>
+            <br>
+            <p>
+                Assim, podemos dizer que em um triângulo qualquer o quociente da medida de um lado pelo seno do
+                ângulo oposto a ele é igual ao quociente da medida do outro lado pelo seno do ângulo oposto a esse outro
+                lado. E ainda que a constante gerada por esses quocientes é igual a 2R.
+
+            </p>
+        </section>
+        <section class="secao2">
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    EXERCÍCIOS COMENTADOS
+                </h1>
+            </div>
+            <br>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>1</strong>. Observe a figura a seguir.
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" style="max-width: 80%; width: 35%;"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765651492/figura_ex5_bfp5lq.jpg" alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Na figura a seguir um triângulo não retângulo, com os seguintes dados:
+                    </p>
+                    <ul class="lista-compacta">
+                        <li>Lado \( \underline {AB} = 40 \ cm \)</li>
+                        <li>Ângulo \( med \ \widehat {B} = 96°\)  </li>
+                        <li>Ângulo \( med \ \widehat {C} = 33°\)  </li>
+                    </ul>
+                    <p>
+                        Determine o valor da medida \( \underline {AC}\).
+                    </p>
+                </div>
+                <div class="resolucao">
+                    <p>
+                        <strong>Resolução:</strong>
+                        Como estamos lidando com um triângulo qualquer (não retângulo), a Lei dos Senos é a
+                        ferramenta apropriada. Ela diz que:
+                    </p>
+                    <br>
+                    <p>$$ \frac {\underline{AC}}{sen \widehat{B}} = \frac {\underline{AB}}{sen \widehat{C}} $$</p>
+                    <br>
+                    <p>
+                        Substituindo os valores conhecidos:
+                    </p>
+                    <p>
+                        $$ \frac {\underline{AC}}{sen{96°}} = \frac {40}{sen 33°} $$
+                    </p>
+                    <br>
+                    <p>
+                        Agora isolamos \( \underline {AC}\):
+                    </p>
+                    <p>
+                        $$ \underline {AC} = \frac {40 \cdot sen96°}{sen33°} $$
+                    </p>
+                    <br>
+                    <p>
+                        Calculando os valores aproximados:
+                    </p>
+                    <ul class="lista-compacta">
+                        <li>\( sen(96°) \approx 0,9945 \)</li>
+                        <li>\( sen(33°) \approx 0,5446 \) </li>
+                    </ul>
+                    <div class="math-wrapper">
+                    <p>
+                        $$ \underline {AC} \approx \frac {40 \ \cdot 0,9945}{0,5446} \approx \frac {39,78}{0,5446} \approx 73,04 \ cm $$
+                    </p>
+                    </div>
+                    <p>
+                        A Lei dos Senos é extremamente útil quando temos um triângulo oblíquo (sem ângulo reto) e conhecemos
+                        dois ângulos e um lado. Nesse caso, usamos a proporção entre lados e senos de ângulos opostos para
+                        encontrar o valor solicitado com segurança.
+                    </p>
+                    <br>
+                    <p>
+                        <b>Resposta final:</b>
+                        O comprimento do lado \( \underline {AC}\) é aproximadamente \( 73,04cm \).
+                    </p>
+                        
+                </div>
+            </div>
+            
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>2</strong>. Na figura a seguir temos:
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" style="max-width: 80%; width: 35%;"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765652279/figura_ex6_nblcrh.jpg" alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Na figura, temos os seguintes dados:
+                    </p>
+                    <ul class="lista-compacta">
+                        <li>Lado \( \underline {BC} = 22cm \)</li>
+                        <li>Ângulo \( med \widehat {(A)} = 60° \) </li>
+                        <li>Ângulo \( med \widehat {(B)} = 40° \) </li>
+                    </ul>
+                    <p>
+                        Determine o valor da medida \( \underline {AB} \).
+                    </p>
+                </div>
+                <div class="resolucao">
+                    <p>
+                        <strong>Resolução:</strong>
+                        Antes de aplicar a Lei dos Senos, precisamos conhecer o valor do terceiro ângulo \( \widehat {C}\).
+                        Como a soma dos ângulos internos de qualquer triângulo é igual a 180°, temos:
+                    </p>
+                    <p>
+                        $$ \widehat {C} = 180° - 60° - 40° = 80°  $$
+                    </p>
+                    <br>
+                    <p>
+                        Agora, aplicamos a Lei dos Senos:
+                    </p>
+                    <p>
+                        $$ \frac {\widehat{AB}}{sen(80°)} = \frac {\underline{BC}}{sen(60°)} $$
+                    </p>
+                    <br>
+                    <p>
+                        Substituímos os valores conhecidos:
+                    </p>
+                    <p>
+                        $$ \frac {\underline{AB}}{sen(80°)} = \frac {22}{sen(60°)} $$
+                    </p>
+                    <br>
+                    <p>
+                        Isolando \( \underline {AB} \):
+                    </p>
+                    <p>
+                        $$ \underline {AB} = \frac {22 \cdot sen(80°)}{sen (60°)} $$ 
+                    </p>
+                    <br>
+                    <p>
+                        Calculando os senos:
+                    </p>
+                    <ul class="lista-compacta">
+                        <li>\( sen(80°) \approx 0,9848 \)</li>
+                        <li>\( sen(60°) \approx 0,8660 \) </li>
+                    </ul>
+                    <br>
+                    <div class="math-wrapper">
+                    <p>
+                        $$ \underline {AB} \approx \frac {22 \cdot 0,9848}{0,8660} 
+                        \approx \frac {21,6656}{0,8660} \approx 25,02cm
+                        $$
+                    </p>
+                    </div>
+                    <br>
+                    <p>
+                        Neste exercício, o ponto-chave foi perceber que, mesmo com apenas dois ângulos fornecidos, o terceiro
+                        pode ser calculado facilmente. A Lei dos Senos é ideal para casos em que temos dois ângulos e um lado
+                        e desejamos encontrar outro lado. O cuidado principal está em associar corretamente os lados com os
+                        ângulos opostos.
+                    </p>
+                    <br>
+                    <p>
+                        Resposta final: O comprimento do lado \( \underline {AB} \) é, aproximadamente, \(25,02 \ cm\).
+                    </p>
+                </div>
+            </div>
+
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>3</strong>. O esboço de uma região triangular que deve ser inserida em um círculo, de centro , está descrito a
+                        seguir.
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" style="max-width: 80%; width: 35%;"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765653168/figura_ex7_vwc9kz.jpg" alt="">
+                    </div>
+                    <br>
+                </div>
+                <div class="resolucao">
+                    <p>
+                        Sabemos que:
+                    </p>
+                    <br>
+                    <ul class="lista-compacta">
+                        <li>O ângulo \(med \widehat{(B)} = 39° \)</li>
+                        <li>O segmento \( \underline {ED} = 92cm \), ou seja, o raio do círculo </li>
+                    </ul>
+                    <br>
+                    <p>Determine o valor da medida \( \underline {AC} \).</p>
+                    <p>
+                        <strong>Resolução:</strong>
+                        Neste exercício, temos um triângulo inscrito em uma circunferência. Isso significa que
+                        podemos usar a Lei dos Senos na forma envolvendo o raio da circunferência circunscrita, que é:
+                    </p>
+                    <br>
+                    <p>
+                        $$ \frac {\underline {AC}}{sen(\widehat{B})} = 2R $$
+                    </p>
+                    <br>
+                    <p>
+                        Sabemos que o raio \(R = \underline {ED} = 92cm\), então temos:
+                    </p>
+                    <br>
+                    <p>
+                        $$ \frac {\underline {AC}}{sen(39°)} = 2 \cdot 92 = 184 $$
+                    </p>
+                    <br>
+                    <p>
+                        Agora, isolamos \(\underline {AC} \):
+                    </p>
+                    <p>$$ \underline{AC} = 184 \cdot sen(39°) $$</p>
+                    <br>
+                    <p>
+                        Calculando:
+                    </p>
+                    <br>
+                    <ul class="lista-compacta">
+                        <li>\(sen(39°) \approx 0,6293 \)</li>
+                        <li>\( \underline {AC} \approx 184 \cdot 0,6293 \approx 115,8cm \)</li>
+                    </ul>
+                    <br>
+                    <p>
+                        Aqui, o principal ponto de atenção é identificar que o triângulo está inscrito em um círculo e que o valor
+                        dado corresponde ao raio. Isso permite aplicar a Lei dos Senos em sua forma com o raio da circunferência.
+                        Muitos alunos esquecem que o denominador com o seno de um ângulo está ligado ao lado oposto, e a
+                        constante \(2R\) só pode ser usada nesse contexto específico de triângulo inscrito.
+                    </p>
+                    <br>
+                    <p>
+                        <b>Resposta final:</b>
+                        O valor aproximado do lado \( \underline {AC} \) é \( 115,8cm \).
+                    </p>
+                </div>
+            </div>
+
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>4</strong>. Veja a figura a seguir:
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" style="max-width: 80%; width: 35%;"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765651492/figura_ex5_bfp5lq.jpg" alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Sabe-se que:
+                    </p>
+                    <ul class="lista-compacta">
+                        <li>\(\underline {AB} = 40cm\)</li>
+                        <li>\(\underline {AC} = 18cm\)</li>
+                        <li>\( med (\widehat C) = 28°\)</li>
+                    </ul>
+                    <p>
+                        Qual deve ser a medida do ângulo \(\widehat B ?\) 
+                    </p>
+                </div>
+                <div class="resolucao">
+                    <p>
+                        <strong>Resolução:</strong>
+                        Neste exercício, vamos usar a Lei dos Senos, que relaciona os lados e os ângulos opostos em
+                        um triângulo qualquer. A forma mais comum da lei é:
+                    </p>
+                    <br>
+                    <p>
+                        $$ \frac  {\underline {AB}}{sen(\widehat{C})} = \frac {\underline{AC}}{sen(\widehat{B})} $$
+                    </p>
+                    <br>
+                    <p>
+                        Substituímos os valores fornecidos:
+                    </p>
+                    <p>
+                        $$ \frac {40}{sen(28°)} = \frac {18}{sen(\widehat{B})} $$
+                    </p>
+                    <br>
+                    <p>
+                        Multiplicamos cruzado para isolar o seno de \(\widehat{B}\):
+                    </p>
+                    <p>
+                        $$ 40 \cdot sen \widehat{B} = 18 \cdot sen(28°) $$
+                    </p>
+                    <br>
+                    <p>
+                        Calculamos o valor numérico:
+                    </p>
+                    <p>
+                        $$ \large 40 \cdot sen \widehat {B} = 18 \cdot 0,4695 $$
+                    </p>
+                    <p>
+                        $$ \large 40 \cdot sen \widehat {B} = 8,451 $$
+                    </p>
+                    <br>
+                    <p>
+                        Agora, isolamos o seno de \( \widehat {B} \):
+                    </p>
+                    <p>
+                        $$ \large sen \widehat {B} = \frac {8,451}{40} \approx 0,2113 $$
+                    </p>
+                    <p>
+                        $$ \large sen \widehat {B} = 0,211262 $$
+                    </p>
+                    <br>
+                    <p>
+                        Por fim, usamos a função arco seno (ou função inversa do seno) para encontrar o ângulo:
+                    </p>
+                    <p>
+                        $$ \large \widehat {B} = arcsen (0,211262) \approx 12,2° $$
+                    </p>
+                    <p>
+                        $$ \large \widehat {B} \approx 12,2° $$
+                    </p>
+                    <p>
+                        É comum o aluno confundir qual lado está oposto a qual ângulo. Neste caso, usamos os lados \(\underline {AB}\) e
+                        \(\underline {AC}\), que são opostos aos ângulos \(\widehat {C}\) e \(\widehat {B}\), respectivamente. Aplicar corretamente a Lei dos Senos
+                        exige essa identificação. Também é importante lembrar que, ao usar função trigonométrica inversa, o
+                        resultado será em graus se a calculadora estiver configurada corretamente.
+                    </p>
+                    <br>
+                    <p>
+                        <b>Resposta final:</b>
+                        A medida aproximada do ângulo \(\widehat {B}\) é \(12,2°\).
+                    </p>
+                </div>
+            </div>
+            <br>
+        </section>
+        <section class="secao1">
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    2.2 LEI DOS COSSENOS
+                </h1>
+            </div>
+            <p>
+                Considere um triângulo qualquer ABC, sem a exigência de que ele seja retângulo.
+            </p>
+            <br>
+            <!-- Imagem do exercício -->
+            <div class="figura-container-reduzida">
+                <img class="zoomable fundo-transparente" style="max-width: 80%; width: 45%;"
+                    src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765655010/figura_t2.2_ox6xjq.jpg" alt="">
+            </div>
+            <br>
+            <p>
+                Para compreender a Lei dos Cossenos, traçamos a altura h a partir do vértice A até o lado oposto BC, de
+                forma que essa altura divida o triângulo original em dois triângulos retângulos: ABD e ADC.
+            </p>
+            <br>
+            <!-- Imagem do exercício -->
+            <div class="figura-container-reduzida">
+                <img class="zoomable fundo-transparente" style="max-width: 80%; width: 85%;"
+                    src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765655119/fotopaint_bvwhbj.png" alt="">
+            </div>
+            <br>
+            <p>
+                A base BC é dividida em dois segmentos: \(n\) , que corresponde ao trecho de B até o pé da altura (ponto D), e \((a - n)\),  que corresponde ao trecho de D até C.
+            </p>
+            <p>
+                Nos triângulos ABD e ADC, podemos aplicar o Teorema de Pitágoras separadamente:
+            </p>
+
+            <br>
+            <div class="quadro-problema" style="border: 2px solid #9F43BE;">
+                <div class="topo">
+            
+                    <p style="text-align: center;">
+                        No triângulo ADC, temos:
+                    </p>
+            
+                    <p style="text-align: center;">
+                        $$ b^2 = h^2 + (a - n)^2 $$
+                    </p>
+            
+                    <p style="text-align: center;">
+                        $$ b^2 = h^2 + a^2 - 2an + n^2 $$
+                    </p>
+            
+                    <br>
+            
+                    <p style="text-align: center;">
+                        Aplicando o teorema de Pitágoras no triângulo ABD, temos:
+                    </p>
+            
+                    <p style="text-align: center;">
+                        $$ c^2 = h^2 + n^2 $$
+                    </p>
+            
+                    <p style="text-align: center;">
+                        $$ h^2 = c^2 - n^2 $$
+                    </p>
+            
+                    <br>
+            
+                    <p style="text-align: center;">
+                        Substituindo, temos:
+                    </p>
+            
+                    <p style="text-align: center;">
+                        $$ b^2 = c^2 - n^2 + a^2 - 2an + n^2 $$
+                    </p>
+            
+                    <p style="text-align: center;">
+                        $$ b^2 = c^2 + a^2 - 2an $$
+                    </p>
+            
+                    <br>
+            
+                    <p style="text-align: center;">
+                        E ainda temos no triângulo ABD a seguinte relação:
+                    </p>
+            
+                    <p style="text-align: center;">
+                        $$ \cos \widehat{B} = \frac{n}{c} $$
+                    </p>
+            
+                    <p style="text-align: center;">
+                        $$ n = c \cdot \cos \widehat{B} $$
+                    </p>
+            
+                    <br>
+            
+                    <p style="text-align: center;">
+                        Substituindo, obtemos:
+                    </p>
+            
+                    <p style="text-align: center;">
+                        $$ b^2 = a^2 + c^2 - 2 \cdot a \cdot c \cdot \cos \widehat{B} $$
+                    </p>
+            
+                    <br>
+            
+                    <p style="text-align: center;">
+                        E, utilizando raciocínio semelhante obtemos as relações:
+                    </p>
+            
+                    <p style="text-align: center;">
+                        $$ a^2 = b^2 + c^2 - 2 \cdot b \cdot c \cdot \cos \widehat{A} $$
+                    </p>
+            
+                    <p style="text-align: center;">
+                        $$ c^2 = a^2 + b^2 - 2 \cdot a \cdot b \cdot \cos \widehat{C} $$
+                    </p>
+                </div>
+            </div>
+            <br>
+            <p>
+                Desta forma, podemos dizer que o quadrado da medida de um lado de um triângulo qualquer é igual à
+                soma dos quadrados das medidas dos outros dois lados subtraída do dobro do produto da medida entre
+                esses dois lados e o cosseno do ângulo formado por eles.
+            </p>
+        </section>
+        <section class="secao2">
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    EXERCÍCIOS COMENTADOS
+                </h1>
+            </div>
+
+            <br>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>1</strong>. Veja a figura:
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" style="max-width: 80%; width: 35%;"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765651492/figura_ex5_bfp5lq.jpg" alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Sabemos que:
+                    </p>
+                    <ul class="lista-compacta">
+                        <li>\( \underline {AB} = 45 \ cm \)</li>
+                        <li>\( \underline {BC} = 96 \ cm\) </li>
+                        <li>\( med \ \widehat {B} = 57°\) </li>
+                    </ul>
+                    <p>
+                        Determine o valor da medida \( \underline {AC}\).
+                    </p>
+                </div>
+                <div class="resolucao">
+                    <p>
+                        <strong>Resolução:</strong>
+                        Neste caso, temos dois lados e o ângulo formado entre eles. Isso nos permite aplicar
+                        diretamente a Lei do Cosseno, que é útil quando conhecemos dois lados e o ângulo entre eles ou os três
+                        lados do triângulo.
+                    </p>
+                    <br>
+                    <p>
+                        A fórmula da Lei do Cosseno é:
+                    </p>
+                    <div class="math-wrapper">
+                    <p>
+                        $$ (\underline{AC})^2 = (\underline {AB})^2 + (\underline {BC})^2 - 2
+                        \cdot \underline{AB} \cdot \underline{BC} \cdot coscos \widehat{B}
+                        $$
+                    </p>
+                    </div>
+                    <br>
+                   <p>
+                        Substituindo os valores dados:
+                   </p>
+                    <div class="math-wrapper">
+                    <p>
+                            $$ (\underline{AC})^2 = 45^2 + 92^2 - 2 \cdot 45 \cdot 92 \cdot coscos (57°)$$
+                    </p>
+                    </div>
+                    <br>    
+                   <p>
+                        Calculando passo a passo:
+                   </p>
+                   <p>$$ 45^2 = 2025 $$</p>
+                   <p>$$ 92^2 = 8464 $$</p>
+                   <p>$$ cos(57) \approx 0,5446 $$</p>
+                   <p>$$ 2 \cdot 45 \cdot 92 \cdot 0,5446 \approx 4511,6 $$</p>
+                   <br>
+
+                   <p>
+                        Agora substituímos:
+                   </p>
+                <div class="math-wrapper">
+                   <p>
+                        $$ (\underline {AC})^2 = 2025 + 8464 - 4511,6 = 5977,4 $$
+                   </p>
+                </div>
+                   <br>
+                   <p>
+                        Extraímos a raiz quadrada:
+                   </p>
+                   <p>
+                        $$ \large \underline{AC} \approx \sqrt{5977,4} \approx 77,33 \ cm $$
+                   </p>
+                   <p>
+                        A Lei do Cosseno funciona como uma generalização do Teorema de Pitágoras, válida para qualquer
+                        triângulo. É importante identificar corretamente os lados e o ângulo formado entre eles. Muitos erros
+                        ocorrem ao aplicar o cosseno do ângulo errado ou esquecer de multiplicar os três fatores: os dois lados e o
+                        cosseno.
+                   </p>
+                   <br>
+                   <p>
+                        <b>Resposta final:</b>
+                        O valor aproximado do segmento \(\underline {AC}\) é \(77,33 \ cm \). 
+                   </p>
+                </div>
+            </div>
+            
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>2</strong>. Observe a figura a seguir:
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable fundo-transparente" style="max-width: 80%; width: 35%;"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1765652279/figura_ex6_nblcrh.jpg" alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Temos:
+                    </p>
+                    <ul class="lista-compacta">
+                        <li>\( \underline {AC} = 12 \ km \)</li>
+                        <li>\( \underline {BC} = 9,3 \ km \); </li>
+                        <li>\( med \widehat {(C)} = 72° \) </li>
+                    </ul>
+                    <p>
+                        Determine a medida do segmento \( \underline {AB} \).
+                    </p>
+                </div>
+                <div class="resolucao">
+                    <p>
+                        <strong>Resolução:</strong>
+                        Temos aqui dois lados conhecidos do triângulo (\( \underline {AC} e \underline {BC}\)) e o ângulo entre eles (\(\widehat C\)). 
+                        Esse é um caso típico para aplicar a Lei do Cosseno, pois temos um triângulo não retângulo com dois lados e o ângulo
+                        entre eles.
+                    </p>
+                    <br>
+                    <p>
+                        A fórmula da Lei do Cosseno é:
+                    </p>
+                    <div class="math-wrapper">
+                    <p>
+                        $$ (\underline {AB})^2 = (\underline {AC})^2 + (\underline{BC})^2 - 2
+                        \cdot \underline {AC} \cdot \underline{BC} \cdot coscos (\widehat {C})
+                        $$
+                    </p>
+                    </div>
+                    <br>
+                    <p>
+                        Substituindo os valores:
+                    </p>
+                    <div class="math-wrapper">
+                    <p>
+                        $$ 
+                            (\underline {AB}) ^2 = 12^2 + 9,3^2 - 2 \cdot 12 \cdot 9,3 \cdot coscos (72°)
+                        $$
+                    </p>
+                    </div>
+                    <br>
+                    <p>
+                        Calculando passo a passo:
+                    </p>
+                    <br>
+                    <ul class="lista-compacta">
+                        <li>\( 12^2 = 144 \)</li>
+                        <li>\( 9,3^2 \approx 86,49 \); </li>
+                        <li>\( cos(72°) \approx 0,3090 \) </li>
+                        <li>\( 2 \cdot 12 \cdot 9,3 \cdot 0,3090 \approx 69,0 \) </li>
+                    </ul>
+                    <br>
+                    <p>
+                        Agora:
+                    </p>
+                    <p>
+                        $$ (\underline {AB})^2 = 144 + 86,49 - 69,0 = 161,49 $$
+                    </p>
+                    <br>
+                    <p>
+                        Extraindo a raiz quadrada:
+                    </p>
+                    <p>
+                        $$ \underline {AB} \approx \sqrt {161,49} \approx 12,71 \ cm $$
+                    </p>
+                    <br>
+                    <p>
+                        O uso da Lei do Cosseno exige atenção ao ângulo usado: ele precisa ser o ângulo entre os dois lados
+                        conhecidos. Nesse caso, o ângulo \(\widehat{C}\) liga os lados \(\underline{AC}\) e \(\underline{BC}\),
+                        o que justifica sua aplicação direta. Também
+                        é essencial usar a função cosseno com precisão na calculadora para não comprometer o resultado final.
+                    </p>
+                    <br>
+                    <p>
+                        <b>Resposta final:</b>
+                        O valor aproximado do segmento \( \underline {AB}\) é \(12,71 \ cm \).
+                    </p>
+                </div>
+            </div>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="text-align: left; font-size: 19px !important; color: #015A42 !important;">
+                    Assista aos vídeos abaixo:
+                </h1>
+            </div>
+            <!-- Container dos vídeos -->
+            <div class="container-videos">
+                <div class="video-play-wrapper">
+                    <div class="video-play-btn"
+                        data-video="https://drive.google.com/file/d/1S_yN8lfGb0GIqsgPFIWa3vBKnudItlLh/preview"
+                        onclick="openVideoModal(this)">
+                        <i class='bx bx-play'></i>
+                    </div>
+                    <div class="video-play-text">Clique para assistir</div>
+                </div>
+            
+                <div class="video-play-wrapper">
+                    <div class="video-play-btn"
+                        data-video="https://drive.google.com/file/d/15vDYOnKsueTQ-_aPx8-S9RAVoQ6JkobX/preview"
+                        onclick="openVideoModal(this)">
+                        <i class='bx bx-play'></i>
+                    </div>
+                    <div class="video-play-text">Clique para assistir</div>
+                </div>
+            </div>
+            
+            <!-- Modal com o vídeo -->
+            <div id="videoModal" class="video-modal" onclick="closeVideoModal()">
+                <div class="video-content" onclick="event.stopPropagation()">
+                    <i class="bx bxs-x-circle close-btn" onclick="closeVideoModal()"></i>
+                    <iframe id="videoIframe" width="800" height="450" src="" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div><br><br>
+        </section>
+        <!-- Seção Conclusão -->
+        <section id="conclusao" class="conclusao">
+            <!-- Conteúdo -->
+            <div class="conteudo-conclusao">
+                <div class="caixa-texto">
+                    <h1 class="titulo-conclusao">CONCLUSÃO</h1>
+                    <p>
+                        Depois de tudo o que vimos até aqui, você já tem em mãos instrumentos importantes para resolver
+                        problemas que envolvem triângulos, sejam eles retângulos ou não. Aprendemos a identificar elementos
+                        fundamentais como catetos, hipotenusa, ângulos agudos e a aplicar fórmulas que relacionam lados e
+                        ângulos com precisão. Também entendemos quando utilizar as razões trigonométricas e quando recorrer
+                        à lei dos senos ou dos cossenos, dependendo do tipo de triângulo.
+                    </p>
+                    <p>
+                        Esses conhecimentos são mais do que fórmulas para decorar: são ferramentas úteis que você poderá usar
+                        em diversas áreas, como arquitetura, engenharia, design e até em atividades do dia a dia. A matemática
+                        oferece caminhos lógicos para resolver situações com clareza, e a trigonometria é uma dessas chaves.
+                        Continue praticando, revendo os exemplos e refazendo os exercícios. O raciocínio vai se tornando cada
+                        vez mais natural com o tempo.
+                    </p>
+                </div>
+            </div>
+            <div id="download" class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1HV90R9dn03hhj7PrmfjREAPdQEyulFpT" class="download-btn">
+                    Baixar PDF <i class="fas fa-download"></i> <!-- Ícone de download -->
+                </a>
+            </div>
+        </section>
+        
+        <!-- Seção Referências-->
+        <section id="referencias" class="referencias">
+            <!-- Conteúdo -->
+            <div class="conteudo-referencias">
+                <div class="caixa-texto">
+                    <h1 class="titulo-referencias">REFERÊNCIAS</h1>
+        
+                    <p>BOYER, Carl B.; MERZBACH, Uta C. <b>História da Matemática.</b> 2. ed.
+                        São Paulo: Edgard Blücher, 2012.
+                    </p>
+        
+                    <p>DANTE, Luiz Roberto. <b>Matemática: contexto e aplicações.</b> 2. ed.
+                        São Paulo: Ática, 2011.
+                    </p>
+        
+                    <p>IEZZI, Gelson et al. <b>Matemática: volume único.</b>
+                        São Paulo: Atual, 2010.
+                    </p>
+        
+                    <p>GIOVANNI, J. Ruy et al. <b>Matemática fundamental: uma nova abordagem;</b>
+                        ensino médio; volume único. São Paulo: FTD, 2002.
+                    </p>
+        
+                    <p>GOUVEIA, R. <b>Trigonometria no triângulo retângulo.</b> Toda Matéria, [s.d.].
+                        Disponível em:
+                        <a href="https://www.todamateria.com.br/trigonometria-no-triangulo-retangulo/" target="_blank">
+                            https://www.todamateria.com.br/trigonometria-no-triangulo-retangulo/
+                        </a>.
+                        Acesso em: 05 mar. 2021.
+                    </p>
+        
+                    <p>NOVAES, J. C. <b>Trigonometria no triângulo retângulo.</b> Matemática Básica, [s.d.].
+                        Disponível em:
+                        <a href="https://matematicabasica.net/trigonometria-no-triangulo-retangulo/" target="_blank">
+                            https://matematicabasica.net/trigonometria-no-triangulo-retangulo/
+                        </a>.
+                        Acesso em: 05 mar. 2021.
+                    </p>
+        
+                    <p>SILVA, M. N. P. <b>Trigonometria no triângulo retângulo.</b> Brasil Escola, [s.d.].
+                        Disponível em:
+                        <a href="https://brasilescola.uol.com.br/matematica/trigonometria-no-triangulo-retangulo.htm"
+                            target="_blank">
+                            https://brasilescola.uol.com.br/matematica/trigonometria-no-triangulo-retangulo.htm
+                        </a>.
+                        Acesso em: 05 mar. 2021.
+                    </p>
+        
+                </div>
+            </div>
+        </section>
+        <!-- Seção com os créditos e ficha técnica -->
+        <section class="ficha-tecnica">
+            <p>CASA NOSSA SENHORA DA PAZ – AÇÃO SOCIAL FRANCISCANA, PROVÍNCIA FRANCISCANA DA <br>
+                IMACULADA CONCEIÇÃO DO BRASIL – ORDEM DOS FRADES MENORES</p>
+            <br>
+            <p><strong>GESTOR DO CENTRO DE INOVAÇÃO E SOLUÇÕES EDUCACIONAIS - CISE</strong>
+                Franklin Portela Correia</p>
+        
+            <p><strong>COORDENADORA DO PROGRAMA DE ATUALIZAÇÃO</strong>
+                Flávia Cristina Franco de Lima Rosa</p>
+        
+            <p><strong>SUPERVISORA EDUCACIONAL</strong>
+                Juliane Cristine Batista</p>
+        
+            <p><strong>DESIGNER INSTRUCIONAL</strong>
+                Ana Angelica Miranda Ramos</p>
+        
+            <p><strong>PROJETO GRÁFICO</strong>
+                Andréa Calegari<br>
+                Lucas Ichimaru Testa</p>
+        
+            <p><strong>DIAGRAMADORES</strong>
+                Andréa Calegari<br>
+                Lucas Ichimaru Testa</p>
+        
+            <p><strong>DESENVOLVEDOR</strong>
+                Pedro Vinicius Pires de Oliveira Dias</p>
+        
+            <p><strong>PRODUTOR AUDIOVISUAL</strong>
+                Cassio Martins de Carvalho</p>
+        
+            <p><strong>EDIÇÃO DE VÍDEOS</strong>
+                Diogo Lefort Silva<br>
+                Rafael da Silva Oliveira<br>
+                Hugo Henrique Ferreira da Silva</p>
+        
+            <br><br>
+            <p><span class="paragraforeduzido">
+                    © 2026 Universidade São Francisco<br>
+                    Avenida São Francisco de Assis, 218<br>
+                    CEP 12916-900 – Bragança Paulista/SP
+            </p></span>
+        </section>
+        <footer class="footer">
+            <p>Copyright © de Universidade São Francisco</p>
+            <hr class="footer-divider">
+            <span class="fonte-menor">Todos os direitos reservados. Este ebook ou
+                qualquer parte dele não pode ser reproduzido ou usado em quaisquer formas (eletrônico,
+                gravação, fotocópia, distribuição pela Internet ou outros) sem autorização
+                expressa, por escrito, da <strong>Universidade São Francisco.</strong></span>
+        </footer>
+    <script>
+         // Navbar
+            document.querySelector('.menu-toggle').addEventListener('click', () => {
+                const menu = document.querySelector('.navbar ul');
+                const icons = document.querySelectorAll('.menu-toggle i'); // Seleciona ambos os ícones
+
+                menu.classList.toggle('show'); // Alterna a visibilidade do menu
+
+                // Alterna entre o ícone de abrir (menu) e o ícone de fechar (x)
+                icons[0].style.display = icons[0].style.display === 'none' ? 'block' : 'none'; // Mostra ou esconde o ícone de menu
+                icons[1].style.display = icons[1].style.display === 'none' ? 'block' : 'none'; // Mostra ou esconde o ícone de fechar
+            });
+            // Fechar o menu ao clicar em um link
+            const links = document.querySelectorAll('.navbar ul li a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    const menu = document.querySelector('.navbar ul');
+                    const icons = document.querySelectorAll('.menu-toggle i');
+
+                    // Fecha o menu ao clicar no link
+                    menu.classList.remove('show');
+                    icons[0].style.display = 'block'; // Exibe o ícone de menu
+                    icons[1].style.display = 'none'; // Esconde o ícone de fechar
+                });
+            });
+            // Captura o elemento navbar
+            const navbar = document.querySelector('.navbar');
+
+            // Função que altera a opacidade da navbar
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) { // Quando o scroll for maior que 50px
+                    navbar.style.backgroundColor = 'rgba(159, 67, 190, 0.8)'; // Opacidade 80%
+                } else {
+                    navbar.style.backgroundColor = '#9F43BE'; // Cor original sem transparência
+                }
+            });
+
+
+            // Cria o container lightbox
+            const lightbox = document.createElement("div");
+            lightbox.classList.add("lightbox");
+            document.body.appendChild(lightbox);
+
+            let scale = 1; // nível de zoom
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            document.querySelectorAll(".zoomable").forEach(img => {
+                img.addEventListener("click", () => {
+                    const imgClone = document.createElement("img");
+                    imgClone.src = img.src;
+                    imgClone.alt = img.alt;
+                    imgClone.style.objectFit = "contain"; // garante que abre ajustada
+                    imgClone.style.maxWidth = "100%";
+                    imgClone.style.maxHeight = "100%";
+
+                    lightbox.innerHTML = "";
+                    lightbox.appendChild(imgClone);
+                    lightbox.style.display = "flex";
+                    scale = 1;
+                    translateX = translateY = 0;
+                    updateTransform(imgClone);
+
+                    // Mensagem de dica
+                    const hint = document.createElement("div");
+                    hint.classList.add("lightbox-hint");
+                    hint.innerText = "Use a roda do mouse para dar zoom e arraste para mover";
+                    lightbox.appendChild(hint);
+
+                    // Remove a dica após 4s
+                    setTimeout(() => {
+                        if (hint && hint.parentNode) {
+                            hint.remove();
+                        }
+                    }, 4000);
+
+                    // Zoom com scroll
+                    imgClone.addEventListener("wheel", e => {
+                        e.preventDefault();
+                        scale += e.deltaY * -0.001;
+                        scale = Math.min(Math.max(1, scale), 5); // limite de zoom
+                        updateTransform(imgClone);
+                    });
+
+                    // Arrastar imagem
+                    imgClone.addEventListener("mousedown", e => {
+                        isDragging = true;
+                        startX = e.clientX - translateX;
+                        startY = e.clientY - translateY;
+                        lightbox.style.cursor = "grabbing";
+                    });
+
+                    window.addEventListener("mousemove", e => {
+                        if (!isDragging) return;
+                        translateX = e.clientX - startX;
+                        translateY = e.clientY - startY;
+                        updateTransform(imgClone);
+                    });
+
+                    window.addEventListener("mouseup", () => {
+                        isDragging = false;
+                        lightbox.style.cursor = "grab";
+                    });
+                });
+            });
+
+            // Fecha clicando fora da imagem
+            lightbox.addEventListener("click", e => {
+                if (e.target === lightbox) {
+                    lightbox.style.display = "none";
+                }
+            });
+
+            // Função para aplicar zoom + movimento
+            function updateTransform(img) {
+                img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+            }
+            document.querySelectorAll('.slider-texto-container').forEach(initSliderTexto);
+
+            function initSliderTexto(container) {
+                const slides = container.querySelectorAll('.slide-texto');
+                const indicatorsContainer = container.querySelector('.slider-texto-indicadores');
+
+                indicatorsContainer.innerHTML = ''; // Limpa indicadores anteriores
+
+                // Cria os dots dinamicamente
+                slides.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot-texto');
+                    dot.onclick = () => mostrarSlide(index);
+                    indicatorsContainer.appendChild(dot);
+                });
+
+                const dots = container.querySelectorAll('.dot-texto');
+                let currentIndex = 0;
+
+                function mostrarSlide(index) {
+                    slides.forEach(slide => slide.classList.remove('ativo'));
+                    dots.forEach(dot => dot.classList.remove('ativo'));
+
+                    currentIndex = (index + slides.length) % slides.length;
+
+                    slides[currentIndex].classList.add('ativo');
+                    dots[currentIndex].classList.add('ativo');
+                }
+
+                // Armazena a função no container para chamadas externas
+                container.mostrarSlideTexto = mostrarSlide;
+                container.getCurrentIndex = () => currentIndex;
+                mostrarSlide(0);
+            }
+
+            // Chamado pelos botões de seta
+            function mudarSlideTexto(button, direcao) {
+                const container = button.closest('.slider-texto-container');
+                const currentIndex = container.getCurrentIndex();
+                container.mostrarSlideTexto(currentIndex + direcao);
+            }
+
+            // Chamado pelos dots (não necessário, mas deixado por compatibilidade)
+            function irParaSlideTexto(dot, index) {
+                const container = dot.closest('.slider-texto-container');
+                container.mostrarSlideTexto(index);
+            }
+            document.addEventListener("DOMContentLoaded", function () {
+                    const videoModal = document.getElementById('videoModal');
+                    const iframe = document.getElementById('videoIframe');
+
+                    // Função para abrir modal
+                    window.openVideoModal = function (element) {
+                        const videoLink = element.getAttribute("data-video");
+                        iframe.src = videoLink;
+                        videoModal.style.display = "flex";
+                    }
+
+                    // Função para fechar modal
+                    window.closeVideoModal = function () {
+                        iframe.src = "";
+                        videoModal.style.display = "none";
+                    }
+
+                    // Fecha ao clicar fora do conteúdo
+                    videoModal.addEventListener('click', function (event) {
+                        if (event.target === this) {
+                            closeVideoModal();
+                        }
+                    });
+                });
+    </script>
+</body>
+</html>
