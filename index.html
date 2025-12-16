@@ -761,38 +761,50 @@
         .lightbox {
             display: none;
             position: fixed;
+            inset: 0;
             z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
             background-color: rgba(0,0,0,0.9);
             justify-content: center;
             align-items: center;
-            cursor: grab;
             overflow: hidden;
         }
 
+        /* Tamanho PADRÃO e controlado da imagem */
         .lightbox img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* garante que se ajuste à tela inicialmente */
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
             transition: transform 0.2s ease;
-            transform-origin: center center;
+            transform-origin: center;
+            cursor: grab;
         }
+
+        /* Botão fechar */
+        .lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 32px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10000;
+            opacity: 0.8;
+        }
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
         .lightbox-hint {
             position: absolute;
             bottom: 20px;
             color: #fff;
             font-size: 14px;
             opacity: 0.8;
-            font-family: sans-serif;
-            text-align: center;
-            animation: fadeOut 4s forwards; /* some sozinho */
+            animation: fadeOut 4s forwards;
         }
+
         .zoomable {
-            cursor: zoom-in; /* ícone de lupa ao passar o mouse */
-            transition: transform 0.2s ease;
+            cursor: zoom-in;
         }
 
         .zoomable:hover {
@@ -4066,59 +4078,59 @@
                 }
             });
 
-
-            // Cria o container lightbox
+            const INITIAL_SCALE = 0.85; // ajuste fino aqui (0.75 a 0.9 funciona bem)
             const lightbox = document.createElement("div");
-            lightbox.classList.add("lightbox");
-            document.body.appendChild(lightbox);
+                lightbox.className = "lightbox";
+                document.body.appendChild(lightbox);
 
-            let scale = 1; // nível de zoom
-            let isDragging = false;
-            let startX, startY, translateX = 0, translateY = 0;
+                let scale = 1;
+                let isDragging = false;
+                let startX, startY, translateX = 0, translateY = 0;
+                let scrollPosition = 0;
 
-            document.querySelectorAll(".zoomable").forEach(img => {
-                img.addEventListener("click", () => {
+                function openLightbox(img) {
+                    scrollPosition = window.scrollY;
+                    document.body.style.position = "fixed";
+                    document.body.style.top = `-${scrollPosition}px`;
+                    document.body.style.width = "100%";
+
+                    lightbox.innerHTML = "";
+
                     const imgClone = document.createElement("img");
                     imgClone.src = img.src;
                     imgClone.alt = img.alt;
-                    imgClone.style.objectFit = "contain"; // garante que abre ajustada
-                    imgClone.style.maxWidth = "100%";
-                    imgClone.style.maxHeight = "100%";
 
-                    lightbox.innerHTML = "";
-                    lightbox.appendChild(imgClone);
+                    const closeBtn = document.createElement("div");
+                    closeBtn.className = "lightbox-close";
+                    closeBtn.innerHTML = "&times;";
+
+                    const hint = document.createElement("div");
+                    hint.className = "lightbox-hint";
+                    hint.innerText = "Use o scroll para zoom • Arraste para mover • ESC para fechar";
+
+                    lightbox.append(imgClone, closeBtn, hint);
                     lightbox.style.display = "flex";
-                    scale = 1;
+
+                    scale = INITIAL_SCALE;
                     translateX = translateY = 0;
                     updateTransform(imgClone);
 
-                    // Mensagem de dica
-                    const hint = document.createElement("div");
-                    hint.classList.add("lightbox-hint");
-                    hint.innerText = "Use a roda do mouse para dar zoom e arraste para mover";
-                    lightbox.appendChild(hint);
+                    setTimeout(() => hint.remove(), 4000);
 
-                    // Remove a dica após 4s
-                    setTimeout(() => {
-                        if (hint && hint.parentNode) {
-                            hint.remove();
-                        }
-                    }, 4000);
+                    closeBtn.onclick = closeLightbox;
 
-                    // Zoom com scroll
                     imgClone.addEventListener("wheel", e => {
                         e.preventDefault();
                         scale += e.deltaY * -0.001;
-                        scale = Math.min(Math.max(1, scale), 5); // limite de zoom
+                        scale = Math.min(Math.max(0.8, scale), 4);
                         updateTransform(imgClone);
                     });
 
-                    // Arrastar imagem
                     imgClone.addEventListener("mousedown", e => {
                         isDragging = true;
                         startX = e.clientX - translateX;
                         startY = e.clientY - translateY;
-                        lightbox.style.cursor = "grabbing";
+                        imgClone.style.cursor = "grabbing";
                     });
 
                     window.addEventListener("mousemove", e => {
@@ -4130,22 +4142,32 @@
 
                     window.addEventListener("mouseup", () => {
                         isDragging = false;
-                        lightbox.style.cursor = "grab";
+                        imgClone.style.cursor = "grab";
                     });
-                });
-            });
-
-            // Fecha clicando fora da imagem
-            lightbox.addEventListener("click", e => {
-                if (e.target === lightbox) {
-                    lightbox.style.display = "none";
                 }
-            });
 
-            // Função para aplicar zoom + movimento
-            function updateTransform(img) {
-                img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-            }
+                function closeLightbox() {
+                    lightbox.style.display = "none";
+                    document.body.style.position = "";
+                    document.body.style.top = "";
+                    window.scrollTo(0, scrollPosition);
+                }
+
+                document.querySelectorAll(".zoomable").forEach(img => {
+                    img.addEventListener("click", () => openLightbox(img));
+                });
+
+                lightbox.addEventListener("click", e => {
+                    if (e.target === lightbox) closeLightbox();
+                });
+
+                document.addEventListener("keydown", e => {
+                    if (e.key === "Escape") closeLightbox();
+                });
+
+                function updateTransform(img) {
+                    img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+                }
             document.querySelectorAll('.slider-texto-container').forEach(initSliderTexto);
 
             function initSliderTexto(container) {
