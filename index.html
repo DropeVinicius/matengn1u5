@@ -820,7 +820,6 @@
                     from { transform: scale(0.7); opacity: 0; }
                     to { transform: scale(1); opacity: 1; }
                 }
-
         
         .slider-texto-container {
             position: relative;
@@ -834,6 +833,7 @@
             background-color: #FFF;
             border-radius: 8px;
         }
+        
         .slider-texto-wrapper {
             display: flex;
             transition: transform 0.5s ease-in-out;
@@ -2695,7 +2695,7 @@
                 <li> A tangente de um ângulo como a razão entre o seno e o cosseno;</li>
                 <li> A cotangente como o inverso da tangente;</li>
                 <li> 
-                    A identidade fundamental da trigonometria, que afirma que o quadrado do seno somado ao
+                    A identidade fundamental da trigonometria, que afirma que o quadrado do seno somado ao<br>
                     quadrado do cosseno de um mesmo ângulo é sempre igual a 1.
                 </li>
             </ul>
@@ -4215,6 +4215,7 @@
                 const container = dot.closest('.slider-texto-container');
                 container.mostrarSlideTexto(index);
             }
+
             document.addEventListener("DOMContentLoaded", function () {
                     const videoModal = document.getElementById('videoModal');
                     const iframe = document.getElementById('videoIframe');
